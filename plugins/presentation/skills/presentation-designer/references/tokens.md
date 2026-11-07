@@ -77,7 +77,7 @@ The mode comes from the draft frontmatter (`mode`) or the intake question "prese
 
 | Role | Light | Dark | Mono |
 |---|---|---|---|
-| bg | #FAFAF7 | #141414 | #FFFFFF |
+| bg | #FFFFFF | #141414 | #FFFFFF |
 | surface | #EEEEEA | #222222 | #FFFFFF |
 | text | #111111 | #F2F2F2 | #000000 |
 | muted | #555555 | #A3A3A3 | #4D4D4D |
@@ -90,7 +90,8 @@ The mode comes from the draft frontmatter (`mode`) or the intake question "prese
 
 - All text colors >= 4.5:1 on bg and surface.
 - Surface is ~1.1:1 against bg, so boxes always carry the 2px border.
-- Mono: pure white background; no fills that print as a tint.
+- Light and mono use pure white as background (an off-white tint renders unevenly on office monitors).
+- Mono: no fills that print as a tint.
 
 ## Status
 

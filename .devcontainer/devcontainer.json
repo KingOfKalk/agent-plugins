@@ -22,7 +22,6 @@
     "vscode": {
       "extensions": [
         "anthropic.claude-code",
-        "bierner.markdown-mermaid",
         "EditorConfig.EditorConfig",
         "esbenp.prettier-vscode",
         "mistralai.mistral-vibe-code",

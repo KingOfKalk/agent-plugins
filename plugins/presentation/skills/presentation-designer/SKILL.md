@@ -19,6 +19,7 @@ Every slide type and component has a DS ID: `DS <group>.<n>`, variants add a let
 | `references/components.md` | Planning slides: every slide type and component with its DS ID, limits and mode limits |
 | `references/examples.md` | Writing content: one good and one bad example per component; read only the sections you need (`grep -n -A3 '## DS 4.3' references/examples.md`) |
 | `references/spec-format.md` | Writing the spec: frontmatter and per-slide fields |
+| `assets/styleguide.html` | Visual reference: every token and the main components as a deck, with theme and mode buttons; render a slide with the builder's screenshot command to look at it. Its spec is `assets/styleguide-spec.md` |
 
 ## Two ways in
 

@@ -5,7 +5,7 @@ Manage Docker containers and Docker Compose services with automatic devcontainer
 ## Installation
 
 ```
-/plugin install docker@kingofkalk-claude-code-plugins
+/plugin install docker@kingofkalk-plugins
 ```
 
 ## Skills

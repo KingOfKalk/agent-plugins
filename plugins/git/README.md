@@ -9,7 +9,7 @@ Git and forge workflow for Claude Code:
 ## Installation
 
 ```
-/plugin install git@kingofkalk-claude-code-plugins
+/plugin install git@kingofkalk-plugins
 ```
 
 ## Skills

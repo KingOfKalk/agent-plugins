@@ -1,11 +1,11 @@
 {
-  "name": "kingofkalk-claude-code-plugins",
+  "name": "kingofkalk-plugins",
   "version": "4.1.0",
-  "description": "A collection of Claude Code plugins by KingOfKalk",
+  "description": "A collection of plugins and skills for coding agents by KingOfKalk",
   "author": {
     "name": "KingOfKalk",
     "url": "https://github.com/KingOfKalk"
   },
-  "repository": "https://github.com/KingOfKalk/claude-code-plugins",
+  "repository": "https://github.com/KingOfKalk/agent-plugins",
   "license": "MIT"
 }

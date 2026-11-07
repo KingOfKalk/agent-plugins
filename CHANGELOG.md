@@ -1,5 +1,11 @@
 # Changelog
 
+## [Unreleased]
+
+### Refactoring
+
+* **repo:** rename repository to `KingOfKalk/agent-plugins` and marketplace to `kingofkalk-plugins` (repo name and marketplace name differ on purpose). Update marketplace with `/plugin marketplace add KingOfKalk/agent-plugins` (Codex: `codex plugin marketplace add KingOfKalk/agent-plugins`) and install plugins with `/plugin install <plugin>@kingofkalk-plugins`
+
 ## [4.1.0](https://github.com/KingOfKalk/claude-code-plugins/compare/v4.0.0...v4.1.0) (2026-09-26)
 
 

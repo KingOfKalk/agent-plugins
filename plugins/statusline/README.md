@@ -15,15 +15,21 @@ A colorful Claude Code statusline that renders on a single line:
 Install via the KingOfKalk marketplace in Claude Code
 
 ```
-/plugin marketplace add kingofkalk/claude-code-plugins
-/plugin install statusline@kingofkalk:claude-code-plugins
+/plugin marketplace add KingOfKalk/agent-plugins
+/plugin install statusline@kingofkalk-plugins
 ```
 
 or directly in your termimal
 
 ```bash
-claude plugin marketplace add kingofkalk/claude-code-plugins
-claude plugin install statusline@Kkingofkalk-claude-code-plugins
+claude plugin marketplace add KingOfKalk/agent-plugins
+claude plugin install statusline@kingofkalk-plugins
+```
+
+Codex CLI:
+
+```bash
+codex plugin marketplace add KingOfKalk/agent-plugins
 ```
 
 Installing the plugin is not enough — Claude Code does not yet pick up `statusLine` from plugin manifests, so you must wire the script into your own `settings.json` to activate it.
@@ -34,7 +40,7 @@ Add the following to `~/.claude/settings.json` (or your project's `.claude/setti
 {
   "statusLine": {
     "type": "command",
-    "command": "$HOME/.claude/plugins/marketplaces/kingofkalk-claude-code-plugins/plugins/statusline/statusline.sh",
+    "command": "$HOME/.claude/plugins/marketplaces/kingofkalk-plugins/plugins/statusline/statusline.sh",
     "padding": 0,
     "refreshInterval": 5
   }

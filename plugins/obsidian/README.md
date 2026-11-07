@@ -5,7 +5,7 @@ Interact with Obsidian vaults via the [Obsidian CLI](https://github.com/Yakitrak
 ## Installation
 
 ```
-/plugin install obsidian@kingofkalk-claude-code-plugins
+/plugin install obsidian@kingofkalk-plugins
 ```
 
 ## Skills

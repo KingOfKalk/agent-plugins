@@ -31,7 +31,7 @@ The limits below are for `read`. In `talk` and `both` (see tokens.md, Modes) the
 - **2.4 Chapter** - number (large, accent), short divider (2 columns, 2px), title; block centered left; only with 2+ chapters
 - **2.5 Subchapter** - small muted breadcrumb ("2 Pipeline"), number "2.2", divider, title, optional one-sentence subtitle
 - **2.6 Closing** (default) - one takeaway, centered left; contact in the footer band
-- **2.7 ClosingNextSteps** - headline, subtitle, numbered steps with owner and date, max 5, whole block vertically centered
+- **2.7 ClosingNextSteps** - headline, subtitle, numbered steps with owner and date, action word bold, max 5, whole block vertically centered
 - **2.8 ClosingQuestions** - "Questions?" centered left
 - **2.9 AppendixContents** - divider block left ("A", divider, "Appendix", subtitle), numbered list of appendix pages right; agenda layout
 - **2.10 AppendixSingle** - same block left, the appendix content itself right (sources, glossary)
@@ -57,9 +57,10 @@ The limits below are for `read`. In `talk` and `both` (see tokens.md, Modes) the
 ## 5 Text
 
 - **5.1 Lists** - bullets, numbered, checklist, key-value; max 5 items, 2 levels
-- **5.2 Quote** - normal size, quotation marks, small muted attribution, max 2 lines
+- **5.2 Quote** - normal size, regular (not italic), quotation marks, small muted attribution, max 2 lines
 - **5.3 SourceNote** - "Source: <who>, <when>", small, muted, above the footer band
-- **5.4 InlineHighlight** - one word or number in accent bold inside running text
+- **5.4 InlineHighlight** - one word or number in accent bold inside running text; the only emphasis in running text, counts as the slide's accent focus
+- **5.5 Link** - text color, regular weight; a) the URL itself as text (`github.com/KingOfKalk/agent-plugins`): no underline; b) other link text ("Repo on GitHub"): underline (2px, 4px offset); `talk`: no links in the body, one short URL (a) on the closing slide at most
 
 ## 6 Emphasis and status
 
@@ -91,7 +92,7 @@ The limits below are for `read`. In `talk` and `both` (see tokens.md, Modes) the
 
 ## 10 Code
 
-- **10.1 CodeBox** - surface fill, 2px border, 4px radius, 24px padding, mono small, max 15 lines, file caption above (small bold); a) plain, b) line numbers + highlighted line (4px accent bar at the left edge of the box, line number in accent), c) commands with muted "$ " + muted output, d) diff (+ success, - error, unchanged muted, sign always shown), e) inline code (mono, surface fill, same size as text); keywords accent, comments muted
+- **10.1 CodeBox** - surface fill, 2px border, 4px radius, 24px padding, mono small, max 15 lines, file caption above (small bold); a) plain, b) line numbers + highlighted line (4px accent bar at the left edge of the box, line number in accent), c) commands with muted "$ " + muted output, d) diff (+ success, - error, unchanged muted, sign always shown), e) inline code (mono, surface fill, same size as text); keywords accent, comments muted (never italic)
 - **10.2 CodeLongLines** - a) soft wrap, b) truncate with muted "...", c) manual breaks, d) wider box (12 columns ~115 chars, 8 ~70, 6 ~55, 4 ~33); prefer c, d, b, a; never a smaller font
 
 ## 11 Media

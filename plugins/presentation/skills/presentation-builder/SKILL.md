@@ -36,7 +36,7 @@ Check what is installed before promising a format (`which google-chrome chromium
 2. **Build.**
    - HTML: copy `assets/deck-template.html`, set `<title>` to the deck title, `data-mode` and `data-palette` on `<body>`, replace the example slides with one `<section class="slide">` per spec slide. Title slide gets `data-title-slide`, appendix slides `data-appendix`; the script fills footer titles and page numbers.
    - Use only the template's classes and the token variables. No new font sizes, colors, shadows or gradients.
-   - Template classes: `.grid` + `.span-N`, `.card` / `.accent-box`, `.rows.rows-2|3` + `.row` (`.focus`), `.split` (`.split-4-8`, `.split-8-4`), `.closing`, `pre.code`, `.list`, `.label`, `.source`. A component without a class: add CSS from tokens only and report it as a template gap.
+   - Template classes: `.grid` + `.span-N`, `.card` / `.accent-box`, `.rows.rows-2|3` + `.row` (`.focus`), `.split` (`.split-4-8`, `.split-8-4`), `.closing`, `pre.code`, `.list`, `.label`, `.source`, links via `<a>` (`.url` when the text is the URL). A component without a class: add CSS from tokens only and report it as a template gap.
    - Body alignment from the spec field `align`: add `.center` to `.body` for `center` (default in `talk` / `both`), nothing for `top`.
    - Speaker notes from `notes` go into `<aside class="notes">` (press N in the deck to show them).
 3. **Check the layout** (HTML and PDF):
@@ -68,7 +68,8 @@ Check what is installed before promising a format (`which google-chrome chromium
 - [ ] Every spec slide rendered, in order; total matches the spec
 - [ ] Layout check `OK`; screenshots looked at, nothing clipped or overlapping
 - [ ] Positions, sizes and gaps on the 8px grid; margins 72 / 120; spans as in the spec
-- [ ] Only the two font stacks and the three sizes of the mode; weights 400 / 700; no italic
+- [ ] Only the two font stacks and the three sizes of the mode; weights 400 / 700
+- [ ] No italic (also not from browser defaults like `<em>`, `<i>`, `<cite>`, `<address>`), no strikethrough; links per DS 5.5 (URL text plain, other text underlined)
 - [ ] Footer: deck title + "n / total"; none on the title slide; appendix "A1"; numbers right after inserts or removals
 - [ ] Code framed, mono, indentation kept, within the line limit of the mode
 - [ ] HTML: one file, opens offline, arrow keys / click navigate, N shows notes, print gives one slide per page

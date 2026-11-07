@@ -29,8 +29,8 @@
     {
       "name": "presentation",
       "source": "./plugins/presentation",
-      "description": "Presentations from outline to slides: a drafter skill for structured outlines (SCR, Patrick Winston's How to Speak) and a designer skill for slide decks and one-pagers with a grid-first visual system and a pre-flight checklist.",
-      "keywords": ["presentation", "slides", "SCR", "outline", "talk", "design-system", "grid", "pptx", "deck"],
+      "description": "Presentations in three steps: a drafter for structured outlines (SCR, Patrick Winston's How to Speak), a designer that turns drafts or quick ideas into a slide spec with a grid-first visual system and talk / read modes, and a builder that renders the spec as one shareable HTML file, PDF or PPTX.",
+      "keywords": ["presentation", "slides", "SCR", "outline", "talk", "design-system", "grid", "pptx", "deck", "html", "pdf"],
       "category": "design"
     },
     {

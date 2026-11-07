@@ -18,7 +18,7 @@ The builder owns **the implementation**: it renders exactly what the spec says, 
 | File | Read when |
 |---|---|
 | `assets/deck-template.html` | Always for HTML and PDF: the starting point for every deck |
-| `references/implementation.md` | Building tables, steps, code, page numbers; tool quirks |
+| `references/implementation.md` | Per format (HTML, PDF, PPTX: units, fonts, notes, icons) and per component (tables, steps, code, page numbers) |
 
 ## Formats
 
@@ -26,7 +26,7 @@ The builder owns **the implementation**: it renders exactly what the spec says, 
 |---|---|---|
 | HTML | yes | one file from `assets/deck-template.html`: all CSS and JS embedded, no external requests, icons as inline SVG |
 | PDF | on request | print the HTML with headless Chrome / Chromium (see below); the template's print CSS gives one 1920 x 1080 page per slide |
-| PPTX | on request | python-pptx or pptxgenjs, 13.333 x 7.5 in; 1px on the 1920 canvas = 0.5pt |
+| PPTX | on request | python-pptx or pptxgenjs, 13.333 x 7.5 in; units, fonts, notes and icons in `references/implementation.md` |
 
 Check what is installed before promising a format (`which google-chrome chromium chromium-browser`, `python3 -c "import pptx"`, `npm ls -g pptxgenjs`). If a format cannot be built here, say so and deliver the HTML.
 

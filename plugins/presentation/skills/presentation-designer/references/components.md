@@ -1,6 +1,6 @@
 # Components
 
-Reference components as `DS <group>.<n>`; variants add a letter (`DS 9.3-d`). Terms: every slide has a headline and a subheadline; "title" and "subtitle" only on the title slide (DS 2.1). A large deck has 15+ main slides or 3+ chapters. New components get the next free number; numbers are never reused.
+Reference components as `DS <group>.<n>`; variants add a letter (`DS 9.3-d`). Terms: every slide has a headline and a subheadline; "title" and "subtitle" only on the title slide (DS 2.1). A large deck has 15+ main slides or 3+ chapters.
 
 ## Mode limits
 
@@ -23,6 +23,7 @@ The limits below are for `read`. In `talk` and `both` (see tokens.md, Modes) the
 
 - **1.1 Grid** - see tokens.md
 - **1.2 Footer** - deck title left, "n / total" right; title slide: metadata line left, no page number; closing slides (2.6-2.8, 2.15): contact left, page number right; one-pagers: date + sources, no page number; appendix "| Appendix" and A1, A2
+- Contrast: text >= 4.5:1 on bg and surface (WCAG 2.2, 1.4.3); status never by color alone (1.4.1)
 
 ## 2 Slide types
 
@@ -104,4 +105,4 @@ The limits below are for `read`. In `talk` and `both` (see tokens.md, Modes) the
 - **11.1 ImageText** - image cropped to 4, 6 or 8 columns next to text, caption below
 - **11.2 Screenshot** - on `bg`, 2px border, numbered 48px accent callouts explained beside it, max ~4
 - **11.3 ImageLarge** - 12 columns, caption below; never full-bleed
-- **11.4 Icons** - Phosphor Icons, Regular and Fill only; 48px next to text, 96px standalone; text color, accent only as focus; always with a text label
+- **11.4 Icons** - Phosphor Icons (MIT), Regular and Fill only; 48px next to text, 96px standalone; text color, accent only as focus; always with a text label; when sharing the icon files themselves (a template, a repo), keep Phosphor's LICENSE next to them

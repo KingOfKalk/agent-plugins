@@ -4,5 +4,5 @@
   "plugins/git": "1.0.0",
   "plugins/obsidian": "1.0.0",
   "plugins/presentation": "1.0.0",
-  "plugins/statusline": "1.0.0"
+  "plugins/claude-code-statusline": "1.0.0"
 }

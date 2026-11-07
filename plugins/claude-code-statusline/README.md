@@ -1,8 +1,8 @@
-# statusline
+# claude-code-statusline
 
 ![statusline preview](screenshot.png)
 
-A colorful Claude Code statusline that renders on a single line:
+A colorful statusline for Claude Code that renders on a single line. It uses Claude Code's status line API, so it does not work in Codex CLI or other agents.
 
 - **Model** — current model display name
 - **Directory** — basename of the working directory
@@ -16,20 +16,14 @@ Install via the KingOfKalk marketplace in Claude Code
 
 ```
 /plugin marketplace add KingOfKalk/agent-plugins
-/plugin install statusline@kingofkalk-plugins
+/plugin install claude-code-statusline@kingofkalk-plugins
 ```
 
-or directly in your termimal
+or directly in your terminal
 
 ```bash
 claude plugin marketplace add KingOfKalk/agent-plugins
-claude plugin install statusline@kingofkalk-plugins
-```
-
-Codex CLI:
-
-```bash
-codex plugin marketplace add KingOfKalk/agent-plugins
+claude plugin install claude-code-statusline@kingofkalk-plugins
 ```
 
 Installing the plugin is not enough — Claude Code does not yet pick up `statusLine` from plugin manifests, so you must wire the script into your own `settings.json` to activate it.
@@ -40,7 +34,7 @@ Add the following to `~/.claude/settings.json` (or your project's `.claude/setti
 {
   "statusLine": {
     "type": "command",
-    "command": "$HOME/.claude/plugins/marketplaces/kingofkalk-plugins/plugins/statusline/statusline.sh",
+    "command": "$HOME/.claude/plugins/marketplaces/kingofkalk-plugins/plugins/claude-code-statusline/statusline.sh",
     "padding": 0,
     "refreshInterval": 5
   }
@@ -48,6 +42,8 @@ Add the following to `~/.claude/settings.json` (or your project's `.claude/setti
 ```
 
 Restart Claude Code after editing `settings.json` to see the statusline.
+
+Upgrading from the old `statusline` plugin: uninstall `statusline@kingofkalk-plugins`, install `claude-code-statusline@kingofkalk-plugins`, and change `plugins/statusline/` to `plugins/claude-code-statusline/` in the `statusLine.command` path of your `settings.json`.
 
 ## Requirements
 

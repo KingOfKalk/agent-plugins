@@ -13,6 +13,13 @@ Thanks for your interest. This repo follows a tight, issue-driven workflow. This
 
 - [AGENTS.md](AGENTS.md) holds the agent-agnostic working rules (communication, tooling, git guardrails). `CLAUDE.md` imports it via `@AGENTS.md`, so Claude Code picks it up automatically; other coding agents should read `AGENTS.md` directly.
 
+## Skills
+
+- Skill name: `<plugin>-<role>`, lowercase kebab-case, e.g. `git-commit`, `docker-compose`, `presentation-drafter`.
+- The name must make sense without the plugin namespace: some agents and listings show only the skill name, and it must not collide with skills from other plugins.
+- The skill folder is named like the skill: `plugins/<plugin>/skills/<plugin>-<role>/SKILL.md`, with the same value in `name:`.
+- Renaming a skill is a breaking change (slash commands and cross-references change): mark the commit with `!`.
+
 ## Branching
 
 - One branch per issue.

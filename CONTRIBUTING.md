@@ -50,6 +50,8 @@ Thanks for your interest. This repo follows a tight, issue-driven workflow. This
 - Description: imperative mood, lowercase, no trailing period.
 - Body: reference the issue with `Refs #<issue-number>` (if one exists).
 - Breaking changes: add `!` after type/scope and a `BREAKING CHANGE: <details>` footer.
+  - Write the footer on a single line. release-please reads any continuation line that starts with `<word>:` (e.g. `/git:git-commit`) as a new footer and cuts the release note off there.
+  - If a truncated footer is already merged, fix the release note with a `BEGIN_COMMIT_OVERRIDE` ... `END_COMMIT_OVERRIDE` block in the body of the merged (squash) PR.
 - Atomic: one logical concern per commit. Don't mix unrelated changes.
 - No AI attribution or co-authoring trailers.
 
@@ -75,7 +77,11 @@ Thanks for your interest. This repo follows a tight, issue-driven workflow. This
   - Commits are assigned by changed file paths, not by scope — a commit touching only `plugins/git/**` releases only `git`.
 - The repo root (`.claude-plugin/plugin.json`, root `CHANGELOG.md`, tags `v<version>`) is versioned separately and only bumps for changes outside `plugins/`.
 - The `latest` branch is fast-forwarded to the release commit after every release (root or any plugin) by [release.yml](.github/workflows/release.yml). Users pin `#latest` to get released code only. Never commit to `latest` directly.
-- New plugin: add a package entry in `release-please-config.json`, a `"version"` in its `plugin.json`, and a matching entry in `.release-please-manifest.json`.
+- New plugin: release-please treats the manifest version as already released, so without a pin the first release would be 1.1.0 (`feat`) or 2.0.0 (breaking). Pin it to 1.0.0:
+  - `plugin.json`: `"version": "0.0.0"`; `.release-please-manifest.json`: `"plugins/<plugin>": "0.0.0"`.
+  - `release-please-config.json`: add the package entry with `"release-as": "1.0.0"`.
+  - After the release PR that publishes 1.0.0 is merged, remove `"release-as"` in a follow-up PR; otherwise every later release stays at 1.0.0.
+  - The same applies when a plugin is renamed (new package path and component).
 - Version bumps:
   - Major: breaking change (`!` or `BREAKING CHANGE:` footer).
   - Minor: `feat`.

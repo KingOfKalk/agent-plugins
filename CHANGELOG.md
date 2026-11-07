@@ -1,5 +1,32 @@
 # Changelog
 
+## [5.0.0](https://github.com/KingOfKalk/agent-plugins/compare/v4.1.1...v5.0.0) (2026-11-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* /obsidian:daily is now /obsidian:obsidian-daily and /obsidian:vault is now /obsidian:obsidian-vault.
+* **statusline:** statusline@kingofkalk-plugins is removed; install claude-code-statusline@kingofkalk-plugins and change plugins/statusline/ to plugins/claude-code-statusline/ in the statusLine.command path of settings.json.
+* **presentation:** presentation-designer no longer builds slides itself; it writes spec.md and hands off to presentation-builder.
+* **presentation:** the plugins presentation-drafter and presentation-designer are removed from the marketplace. Uninstall them and install presentation@kingofkalk-plugins instead. Skill invocations change to `/presentation:presentation-drafter` and `/presentation:presentation-designer`.
+
+### Features
+
+* **presentation-designer:** add slide design system skill ([#69](https://github.com/KingOfKalk/agent-plugins/issues/69)) ([d4d4736](https://github.com/KingOfKalk/agent-plugins/commit/d4d4736e61be78b0851acfca1fe944ddc57cb3aa)), closes [#68](https://github.com/KingOfKalk/agent-plugins/issues/68)
+* **presentation:** merge presentation-drafter and presentation-designer into one plugin ([fc9823e](https://github.com/KingOfKalk/agent-plugins/commit/fc9823e8737a05feaa172493d8e426c743dc66af))
+* **presentation:** split into drafter, designer and builder ([#82](https://github.com/KingOfKalk/agent-plugins/issues/82)) ([e3d7e0d](https://github.com/KingOfKalk/agent-plugins/commit/e3d7e0d6955b5b0d656e86f0aaaa39558012135f))
+
+
+### Refactoring
+
+* **statusline:** rename plugin to claude-code-statusline ([#97](https://github.com/KingOfKalk/agent-plugins/issues/97)) ([1b8e767](https://github.com/KingOfKalk/agent-plugins/commit/1b8e7679239ac3727b13e380240c08e8551c092a)), closes [#79](https://github.com/KingOfKalk/agent-plugins/issues/79)
+* use self-descriptive skill names across all plugins ([#98](https://github.com/KingOfKalk/agent-plugins/issues/98)) ([f6452d6](https://github.com/KingOfKalk/agent-plugins/commit/f6452d64e6e77662de6c9a61e55767f1ecf2d0f9)), closes [#77](https://github.com/KingOfKalk/agent-plugins/issues/77)
+
+
+### Documentation
+
+* add MIT license ([#71](https://github.com/KingOfKalk/agent-plugins/issues/71)) ([4cce4ca](https://github.com/KingOfKalk/agent-plugins/commit/4cce4ca1714251803bf677f6c595c872de3daa42)), closes [#70](https://github.com/KingOfKalk/agent-plugins/issues/70)
+
 ## [4.1.1](https://github.com/KingOfKalk/agent-plugins/compare/v4.1.0...v4.1.1) (2026-11-07)
 
 

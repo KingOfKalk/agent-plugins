@@ -1,5 +1,5 @@
 {
   "name": "presentation",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Presentations in three steps: drafter (storyline, SCR, Winston), designer (grid-first visual system, talk / read modes, spec) and builder (shareable HTML, PDF, PPTX)."
 }

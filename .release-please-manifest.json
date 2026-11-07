@@ -1,8 +1,8 @@
 {
-  ".": "4.1.1",
-  "plugins/docker": "1.0.0",
-  "plugins/git": "1.0.0",
-  "plugins/obsidian": "1.0.0",
-  "plugins/presentation": "1.0.0",
-  "plugins/claude-code-statusline": "1.0.0"
+  ".": "5.0.0",
+  "plugins/docker": "2.0.0",
+  "plugins/git": "2.0.0",
+  "plugins/obsidian": "2.0.0",
+  "plugins/presentation": "2.0.0",
+  "plugins/claude-code-statusline": "2.0.0"
 }

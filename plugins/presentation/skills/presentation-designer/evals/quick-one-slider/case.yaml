@@ -1,0 +1,6 @@
+schema_version: "1.1"
+name: quick-one-slider
+expected_outcome: |
+  Quick path through presentation-designer and presentation-builder: no draft, a spec-*.md in mode read
+  with a one-pager layout, and one self-contained HTML file built from the deck template that passes the
+  layout check. Only the numbers from the prompt appear; everything else is a bracketed placeholder.

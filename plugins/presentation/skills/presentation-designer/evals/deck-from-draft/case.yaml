@@ -1,0 +1,8 @@
+schema_version: "1.1"
+name: deck-from-draft
+expected_outcome: |
+  presentation-designer reads the draft frontmatter instead of asking again, plans one DS ID per slide,
+  uses the draft's key messages as subheadlines, applies the talk mode limits and the Winston last-slide
+  rule, and writes a spec-*.md that carries mode, winston and the draft as source.
+context:
+  scaffold_script: place-files.sh

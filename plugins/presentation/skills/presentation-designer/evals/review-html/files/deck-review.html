@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Platform update</title>
+<style>
+/* Tokens: see presentation-designer/references/tokens.md. Set data-mode and data-palette on <body>. */
+:root {
+  --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  --bg: #FFFFFF; --surface: #EEEEEE; --text: #111111; --muted: #555555;
+  --border: #AFAFAF; --separator: #E2E2E2; --accent: #0A55B5;
+  --success: #1E7A3A; --warning: #8A5300; --error: #C0262D;
+  --radius: 4px;
+  /* read mode sizes */
+  --fs-l: 96px; --lh-l: 104px; --fs-n: 32px; --lh-n: 48px; --fs-s: 24px; --lh-s: 32px;
+  --footer-y: 1000px;
+  --body-h: 672px; --row-h-2: 312px; --row-h-3: 192px; --source-h: 48px;
+}
+body[data-palette="dark"] {
+  --bg: #141414; --surface: #222222; --text: #F2F2F2; --muted: #A3A3A3;
+  --border: #555555; --separator: #2E2E2E; --accent: #6CA8FF;
+  --success: #5CC98A; --warning: #F2B33D; --error: #FF7A7A;
+}
+body[data-palette="mono"] {
+  --bg: #FFFFFF; --surface: #FFFFFF; --text: #000000; --muted: #4D4D4D;
+  --border: #000000; --separator: #BDBDBD; --accent: #000000;
+  --success: #000000; --warning: #000000; --error: #000000; --radius: 0;
+}
+body[data-mode="talk"], body[data-mode="both"] {
+  --fs-n: 48px; --lh-n: 56px; --fs-s: 32px; --lh-s: 40px;
+  --footer-y: 992px;
+  --body-h: 664px; --row-h-2: 304px; --row-h-3: 184px; --source-h: 56px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+body { background: #000; font-family: var(--sans); color: var(--text); overflow: hidden; }
+
+/* Fixed 1920 x 1080 canvas, scaled as a whole by the script. */
+.slide {
+  position: absolute; top: 0; left: 0; width: 1920px; height: 1080px;
+  background: var(--bg); transform-origin: 0 0; display: none; overflow: hidden;
+  padding: 72px 72px 120px 72px;
+  font-size: var(--fs-n); line-height: var(--lh-n);
+}
+.slide.active { display: block; }
+
+/* Header */
+.headline { font-size: var(--fs-l); line-height: var(--lh-l); font-weight: 700; white-space: nowrap; }
+.subheadline { margin-top: 16px; color: var(--muted); }
+.body { margin-top: 48px; }
+/* Vertical alignment of the body (spec field "align"): add .center to .body */
+.body.center { height: var(--body-h); display: flex; flex-direction: column; justify-content: center; }
+.body.grid.center { display: grid; align-content: center; }
+/* SourceNote (DS 5.3): add .has-source to the slide; the body ends 16px above the note */
+.has-source .body.center { height: calc(var(--body-h) - var(--source-h)); }
+/* Hatch for mono status strips and mono chart context (tokens.md) */
+.hatch { background-image: repeating-linear-gradient(45deg, var(--text) 0 4px, transparent 4px 16px); }
+
+/* 12-column grid: 104px columns, 48px gutters */
+.grid { display: grid; grid-template-columns: repeat(12, 104px); column-gap: 48px; row-gap: 48px; }
+.span-3 { grid-column: span 3; } .span-4 { grid-column: span 4; } .span-6 { grid-column: span 6; }
+.span-8 { grid-column: span 8; } .span-12 { grid-column: span 12; }
+
+/* Text sizes */
+.large { font-size: var(--fs-l); line-height: var(--lh-l); }
+.small { font-size: var(--fs-s); line-height: var(--lh-s); }
+.muted { color: var(--muted); }
+.bold { font-weight: 700; }
+.accent { color: var(--accent); font-weight: 700; }
+
+/* Type styles: never italic or strikethrough, also not from browser defaults */
+em, i, cite, address, var, dfn { font-style: normal; }
+s, del, strike { text-decoration: none; }
+/* Links (DS 5.5): text color; underlined unless the text is the URL itself (.url) */
+a { color: inherit; font-weight: inherit; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px; }
+a.url { text-decoration: none; }
+
+/* Boxes (DS 4.1 / 6.1) */
+.card { background: var(--surface); border: 2px solid var(--border); border-radius: var(--radius); padding: 24px; }
+.card .title { font-weight: 700; margin-bottom: 16px; }
+.card .text { font-size: var(--fs-s); line-height: var(--lh-s); }
+.card.accent-box { border: 4px solid var(--accent); padding: 22px; }
+
+/* Label above a value (small, muted) */
+.label { font-size: var(--fs-s); line-height: var(--lh-s); color: var(--muted); }
+
+/* Rows (DS 4.3): add .rows-2 or .rows-3 to .rows; label | text as 4 | 8 */
+.rows { display: flex; flex-direction: column; gap: 48px; }
+.row { display: grid; grid-template-columns: 512px 1fr; column-gap: 48px; align-items: center; padding: 0 24px;
+  background: var(--surface); border: 2px solid var(--border); border-radius: var(--radius); }
+.rows-2 .row { height: var(--row-h-2); } .rows-3 .row { height: var(--row-h-3); }
+.row .row-label { font-weight: 700; }
+.row.focus { border: 4px solid var(--accent); padding: 0 22px; }
+.row.focus .row-label { color: var(--accent); }
+
+/* Split (DS 3.5 6 | 6, DS 3.6 4 | 8 / 8 | 4): 2px divider centered in the gutter; set --split-at to the gutter center */
+.split { position: relative; --split-at: 887px; }
+.split.split-4-8 { --split-at: 583px; } .split.split-8-4 { --split-at: 1191px; }
+.split::before { content: ""; position: absolute; left: var(--split-at); top: 0; bottom: 0; width: 2px; background: var(--border); }
+.split .label + * { margin-top: 16px; }
+
+/* Closing (DS 2.6): one takeaway, block vertically centered, left aligned */
+.closing { position: absolute; left: 72px; top: 50%; transform: translateY(-50%); margin-top: -24px; }
+
+/* Code (DS 10.1) */
+.code-caption { font-size: var(--fs-s); line-height: var(--lh-s); font-weight: 700; margin-bottom: 8px; }
+pre.code {
+  background: var(--surface); border: 2px solid var(--border); border-radius: var(--radius); padding: 24px;
+  font-family: var(--mono); font-size: var(--fs-s); line-height: var(--lh-s); white-space: pre; overflow: hidden;
+}
+pre.code .kw { color: var(--accent); } pre.code .cm { color: var(--muted); }
+
+/* Lists (DS 5.1) */
+ul.list, ol.list { padding-left: 48px; } ul.list li + li, ol.list li + li { margin-top: 16px; }
+
+/* Source note (DS 5.3) */
+.source { position: absolute; left: 72px; top: calc(var(--footer-y) - 72px); font-size: var(--fs-s); line-height: var(--lh-s); color: var(--muted); }
+
+/* Footer (DS 1.2) */
+.footer {
+  position: absolute; left: 72px; right: 72px; top: var(--footer-y);
+  display: flex; justify-content: space-between;
+  font-size: var(--fs-s); line-height: var(--lh-s); color: var(--muted);
+}
+
+/* Speaker notes: hidden; press N to show */
+.notes { display: none; }
+#notes-panel {
+  display: none; position: fixed; left: 0; right: 0; bottom: 0; max-height: 30vh; overflow: auto;
+  background: #111; color: #EEE; font: 16px/24px var(--sans); padding: 16px 24px; white-space: pre-wrap; z-index: 10;
+}
+body.show-notes #notes-panel { display: block; }
+
+/* Print / PDF: one slide per page, unscaled */
+@page { size: 1920px 1080px; margin: 0; }
+@media print {
+  body { background: none; overflow: visible; }
+  .slide { display: block !important; position: relative; transform: none !important; page-break-after: always; break-after: page; }
+  #notes-panel { display: none !important; }
+}
+</style>
+</head>
+<!-- data-mode: read | talk | both; data-palette: light | dark | mono -->
+<body data-mode="read" data-palette="light">
+
+<!-- 1 -->
+<section class="slide" data-title-slide>
+  <div style="position:absolute; left:72px; top:424px;">
+    <div class="headline">Platform update</div>
+    <div class="subheadline">What changed in Q3 and what comes next</div>
+  </div>
+  <div class="footer"><span>Platform team | 2026-10-30 | v1.0</span><span></span></div>
+</section>
+
+<!-- 2 -->
+<section class="slide">
+  <div class="headline">Q3 in review</div>
+  <div class="subheadline">The team shipped seven platform features this quarter.</div>
+  <div class="body">
+    <ul class="list">
+      <li>Pipeline template</li>
+      <li>Dependency cache</li>
+      <li>Security scans</li>
+      <li>Argo CD rollout</li>
+      <li>Secrets in Vault</li>
+      <li>Cost dashboard</li>
+      <li>On-call runbooks</li>
+    </ul>
+  </div>
+  <div class="footer"><span class="deck-title"></span><span class="page-num"></span></div>
+</section>
+
+<!-- 3 -->
+<section class="slide">
+  <div class="headline">What teams say</div>
+  <div class="subheadline">The template removes most of the pipeline maintenance.</div>
+  <div class="body">
+    <div style="font-style: italic">"We deleted 400 lines of YAML in one afternoon."</div>
+    <div class="small muted" style="margin-top: 16px">Team lead, payments</div>
+  </div>
+  <div class="footer"><span class="deck-title"></span><span class="page-num"></span></div>
+</section>
+
+<!-- 4 -->
+<section class="slide">
+  <div class="headline">Build times</div>
+  <div class="subheadline">Builds got <span class="accent">three times</span> faster with the cache.</div>
+  <div class="body grid">
+    <div class="span-6 card accent-box"><div class="title">Before</div><div class="text">12 minutes average</div></div>
+    <div class="span-6 card"><div class="title">After</div><div class="text">4 minutes average</div></div>
+  </div>
+  <div class="footer"><span class="deck-title"></span><span class="page-num"></span></div>
+</section>
+
+<!-- 5 -->
+<section class="slide">
+  <div class="headline" style="white-space: normal">Why every product team should move to the shared pipeline template now</div>
+  <div class="subheadline">Waiting makes the migration more expensive.</div>
+  <div class="footer"><span class="deck-title"></span><span class="page-num"></span></div>
+</section>
+
+<!-- 6 -->
+<section class="slide">
+  <div class="headline">Next quarter</div>
+  <div class="subheadline">Two more teams join the pilot in Q1.</div>
+  <div class="body">
+    <div style="color: #FF00FF; font-weight: 700">Payments and search start in January.</div>
+  </div>
+  <div class="footer"><span class="deck-title"></span><span class="page-num"></span></div>
+</section>
+
+<!-- Appendix slides: add data-appendix to number them A1, A2 ... -->
+
+<div id="notes-panel"></div>
+<script>
+(function () {
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var title = document.title;
+  var main = slides.filter(function (s) { return !s.hasAttribute('data-appendix'); });
+  var appendixIndex = 0;
+
+  // Footer: deck title and "n / total"; title slide counts as 1 but shows no number; appendix A1, A2 ...
+  slides.forEach(function (s) {
+    var t = s.querySelector('.deck-title'); if (t) t.textContent = s.hasAttribute('data-appendix') ? title + ' | Appendix' : title;
+    var p = s.querySelector('.page-num'); if (!p || s.hasAttribute('data-title-slide')) return;
+    p.textContent = s.hasAttribute('data-appendix') ? 'A' + (++appendixIndex) : (main.indexOf(s) + 1) + ' / ' + main.length;
+  });
+
+  var current = 0;
+  function fit() {
+    var scale = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+    var x = (window.innerWidth - 1920 * scale) / 2, y = (window.innerHeight - 1080 * scale) / 2;
+    slides.forEach(function (s) { s.style.transform = 'translate(' + x + 'px,' + y + 'px) scale(' + scale + ')'; });
+  }
+  function show(i) {
+    current = Math.max(0, Math.min(slides.length - 1, i));
+    slides.forEach(function (s, k) { s.classList.toggle('active', k === current); });
+    var n = slides[current].querySelector('.notes');
+    document.getElementById('notes-panel').textContent = n ? n.textContent.trim() : '';
+    if (location.hash !== '#' + (current + 1)) history.replaceState(null, '', '#' + (current + 1));
+  }
+  document.addEventListener('keydown', function (e) {
+    if (['ArrowRight', 'ArrowDown', 'PageDown', ' '].indexOf(e.key) >= 0) { show(current + 1); e.preventDefault(); }
+    else if (['ArrowLeft', 'ArrowUp', 'PageUp'].indexOf(e.key) >= 0) { show(current - 1); e.preventDefault(); }
+    else if (e.key === 'Home') show(0);
+    else if (e.key === 'End') show(slides.length - 1);
+    else if (e.key === 'n' || e.key === 'N') document.body.classList.toggle('show-notes');
+  });
+  document.addEventListener('click', function (e) { if (!e.target.closest('#notes-panel')) show(current + (e.clientX < window.innerWidth / 3 ? -1 : 1)); });
+  window.addEventListener('resize', fit);
+  window.addEventListener('hashchange', function () { show(parseInt(location.hash.slice(1), 10) - 1 || 0); });
+
+  // Layout check for the builder: elements outside the safe area, clipped or overflowing text.
+  // Run headless with "?check" in the URL; results land in <pre id="layout-check">.
+  window.checkLayout = function () {
+    var problems = [], keep = current;
+    slides.forEach(function (s, k) {
+      show(k);
+      var r = s.getBoundingClientRect(), scale = r.width / 1920;
+      s.querySelectorAll('*').forEach(function (el) {
+        if (el.closest('.notes') || el.closest('.footer')) return;
+        var b = el.getBoundingClientRect(); if (!b.width && !b.height) return;
+        var name = el.tagName.toLowerCase() + (el.className ? '.' + String(el.className).split(' ').join('.') : '');
+        var left = (b.left - r.left) / scale, top = (b.top - r.top) / scale;
+        var right = (b.right - r.left) / scale, bottom = (b.bottom - r.top) / scale;
+        var limit = 961;
+        var src = s.querySelector('.source');
+        if (src && !el.closest('.source')) limit = (src.getBoundingClientRect().top - r.top) / scale - 15;
+        if (left < 71 || top < 71 || right > 1849 || bottom > limit) problems.push('slide ' + (k + 1) + ': ' + name + ' outside safe area');
+        if (el.scrollWidth > el.clientWidth + 1 || el.scrollHeight > el.clientHeight + 8) problems.push('slide ' + (k + 1) + ': ' + name + ' overflows its box');
+      });
+    });
+    show(keep);
+    return problems;
+  };
+
+  fit();
+  show((parseInt(location.hash.slice(1), 10) || 1) - 1);
+  if (/[?&]check\b/.test(location.search)) {
+    var out = document.createElement('pre'); out.id = 'layout-check';
+    var found = window.checkLayout(); out.setAttribute('data-problems', found.length);
+    out.textContent = found.length ? found.join('\n') : 'OK'; out.style.display = 'none';
+    document.body.appendChild(out);
+  }
+})();
+</script>
+</body>
+</html>

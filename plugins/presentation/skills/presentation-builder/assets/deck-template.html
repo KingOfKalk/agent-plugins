@@ -67,6 +67,13 @@ body { background: #000; font-family: var(--sans); color: var(--text); overflow:
 .bold { font-weight: 700; }
 .accent { color: var(--accent); font-weight: 700; }
 
+/* Type styles: never italic or strikethrough, also not from browser defaults */
+em, i, cite, address, var, dfn { font-style: normal; }
+s, del, strike { text-decoration: none; }
+/* Links (DS 5.5): text color; underlined unless the text is the URL itself (.url) */
+a { color: inherit; font-weight: inherit; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px; }
+a.url { text-decoration: none; }
+
 /* Boxes (DS 4.1 / 6.1) */
 .card { background: var(--surface); border: 2px solid var(--border); border-radius: var(--radius); padding: 24px; }
 .card .title { font-weight: 700; margin-bottom: 16px; }

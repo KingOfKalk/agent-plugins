@@ -78,11 +78,11 @@ The mode comes from the draft frontmatter (`mode`) or the intake question "prese
 | Role | Light | Dark | Mono |
 |---|---|---|---|
 | bg | #FFFFFF | #141414 | #FFFFFF |
-| surface | #EEEEEA | #222222 | #FFFFFF |
+| surface | #EEEEEE | #222222 | #FFFFFF |
 | text | #111111 | #F2F2F2 | #000000 |
 | muted | #555555 | #A3A3A3 | #4D4D4D |
-| border | #B0B0A8 | #555555 | #000000 |
-| separator | #E2E2DC | #2E2E2E | #BDBDBD |
+| border | #AFAFAF | #555555 | #000000 |
+| separator | #E2E2E2 | #2E2E2E | #BDBDBD |
 | accent | #0A55B5 | #6CA8FF | #000000 (bold, 4px border) |
 | success | #1E7A3A | #5CC98A | label + 2px solid |
 | warning | #8A5300 | #F2B33D | label + 2px dashed |
@@ -90,7 +90,7 @@ The mode comes from the draft frontmatter (`mode`) or the intake question "prese
 
 - All text colors >= 4.5:1 on bg and surface.
 - Surface is ~1.1:1 against bg, so boxes always carry the 2px border.
-- Light and mono use pure white as background (an off-white tint renders unevenly on office monitors).
+- Light and mono use pure white as background, and the light grays are neutral (no warm tint): tinted colors render unevenly on office monitors.
 - Mono: no fills that print as a tint.
 
 ## Status
@@ -121,7 +121,7 @@ Fixed order, never cycled; validated for color blindness.
 | series-2 orange | #EB6834 | #D95926 | gray step + line pattern |
 | series-3 aqua | #1BAF7A | #199E70 | gray step + line pattern |
 | series-4 violet | #6250D6 | #9085E9 | gray step + line pattern |
-| context gray | #B0B0A8 | #555555 | #BDBDBD + hatch (45 degrees, 4px lines every 16px) |
+| context gray | #AFAFAF | #555555 | #BDBDBD + hatch (45 degrees, 4px lines every 16px) |
 
 - Max 4 series; status colors are never series colors.
 - Direct labels on every bar, point and series, not only on the focus: context gray (about 2.2:1 on light bg, 2.5:1 on dark) and aqua (2.7:1) are below the 3:1 for graphics (WCAG 1.4.11), so the labels carry the information.

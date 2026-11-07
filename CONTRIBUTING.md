@@ -67,6 +67,7 @@ Thanks for your interest. This repo follows a tight, issue-driven workflow. This
   - Tags: `<plugin>--v<version>`, e.g. `git--v1.2.0` — the [Claude Code convention](https://code.claude.com/docs/en/plugins/dependencies.md) that plugin dependency version ranges resolve against.
   - Commits are assigned by changed file paths, not by scope — a commit touching only `plugins/git/**` releases only `git`.
 - The repo root (`.claude-plugin/plugin.json`, root `CHANGELOG.md`, tags `v<version>`) is versioned separately and only bumps for changes outside `plugins/`.
+- The `latest` branch is fast-forwarded to the release commit after every release (root or any plugin) by [release.yml](.github/workflows/release.yml). Users pin `#latest` to get released code only. Never commit to `latest` directly.
 - New plugin: add a package entry in `release-please-config.json`, a `"version"` in its `plugin.json`, and a matching entry in `.release-please-manifest.json`.
 - Version bumps:
   - Major: breaking change (`!` or `BREAKING CHANGE:` footer).

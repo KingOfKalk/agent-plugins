@@ -55,7 +55,7 @@ marketplace identifier is `kingofkalk-plugins`:
 
 ## Available plugins and skills
 
-- [**git**](plugins/git/README.md) — atomic Conventional Commits (`commit`), issue-to-pull-request workflow (`ship`), and guardrail hooks blocking `git -C`, commits/pushes on `main`, pushes to non-`origin` remotes, and AI attribution.
+- [**git**](plugins/git/README.md) — atomic Conventional Commits (`git-commit`), issue-to-pull-request workflow (`git-ship`), and guardrail hooks blocking `git -C`, commits/pushes on `main`, pushes to non-`origin` remotes, and AI attribution.
 - [**docker**](plugins/docker/README.md) — Docker CLI and Docker Compose skills with automatic devcontainer detection and safety constraints.
 - [**obsidian**](plugins/obsidian/README.md) — PARA-aware Obsidian vault operations via the Obsidian CLI, plus a daily journal skill for morning planning and evening review.
 - [**presentation**](plugins/presentation/README.md) — presentations in three steps: storyline drafts with SCR and optional Winston rules ([`presentation-drafter`](plugins/presentation/skills/presentation-drafter/SKILL.md)), a grid-first design system with talk / read modes that writes a slide spec ([`presentation-designer`](plugins/presentation/skills/presentation-designer/SKILL.md)), and rendering to one shareable HTML file, PDF or PPTX ([`presentation-builder`](plugins/presentation/skills/presentation-builder/SKILL.md)).

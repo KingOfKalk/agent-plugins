@@ -1,5 +1,5 @@
 ---
-name: commit
+name: git-commit
 description: Create atomic git commits following the Conventional Commits specification. Automatically splits unrelated changes into separate commits.
 argument-hint: "[path, guidance, or issue ref, e.g. 'only auth changes', 'refs #12']"
 disable-model-invocation: false

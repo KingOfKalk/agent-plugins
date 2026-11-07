@@ -14,16 +14,16 @@ Git and forge workflow for Claude Code:
 
 ## Skills
 
-- [`commit`](skills/commit/SKILL.md) - analyze the working tree, group changes by logical concern, and create one or more atomic commits with Conventional Commit messages.
+- [`git-commit`](skills/git-commit/SKILL.md) - analyze the working tree, group changes by logical concern, and create one or more atomic commits with Conventional Commit messages.
   - Plans the commits and waits for confirmation.
   - Splits hunks with `git apply --cached` on stdin, so it never edits files.
   - Adds `Refs #<n>` when the branch is named `<type>/<n>-<slug>`.
   - Claude may invoke it on its own.
-- [`ship`](skills/ship/SKILL.md) - issue, dedicated branch `<type>/<issue>-<slug>`, commit (via `commit`), push to `origin`, pull request (Conventional Commit title, `Closes #n`, Summary, Test plan), then CI and review monitoring until the pull request is ready to merge.
+- [`git-ship`](skills/git-ship/SKILL.md) - issue, dedicated branch `<type>/<issue>-<slug>`, commit (via `git-commit`), push to `origin`, pull request (Conventional Commit title, `Closes #n`, Summary, Test plan), then CI and review monitoring until the pull request is ready to merge.
   - Uses existing labels only.
   - Never merges.
   - Falls back to GitHub MCP tools when `gh` is unavailable.
-  - Runs **only when you invoke it** (`/git:ship`), because it creates issues and pull requests and pushes.
+  - Runs **only when you invoke it** (`/git:git-ship`), because it creates issues and pull requests and pushes.
 
 ## Hooks
 

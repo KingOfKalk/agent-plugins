@@ -57,6 +57,16 @@ Run the design checklist below. Then:
 - Quick: hand over to `presentation-builder` right away (default: one shareable HTML file).
 - From a draft: offer the build; ask which format if the user has not said.
 
+## Review an existing deck
+
+When the user asks to review slides (HTML, PPTX, PDF or screenshots) instead of designing new ones:
+
+1. Get the slides as text and images: text and positions from the file (PPTX: python-pptx; HTML: the DOM), images by rendering each slide (HTML / PDF: headless Chrome; PPTX: LibreOffice `--convert-to pdf` if installed, otherwise ask for a PDF export).
+2. Map every slide to a DS ID, or `none` when no component fits.
+3. Run the design checklist per slide; for HTML decks built from the template also run the builder's layout check.
+4. Report one row per slide: slide, DS ID, violations, suggested fix. Lead with the slides that break the most rules.
+5. Do not change the deck unless asked; offer to write a spec so `presentation-builder` can rebuild it.
+
 ## Core rules
 
 - Canvas 1920 x 1080; base unit 8px; margins 72 (top, left, right) and 120 (bottom, footer band); 12 columns of 104px, gutters 48px.

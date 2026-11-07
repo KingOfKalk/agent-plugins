@@ -59,4 +59,5 @@ marketplace identifier is `kingofkalk-plugins`:
 - [**docker**](plugins/docker/README.md) — Docker CLI and Docker Compose skills with automatic devcontainer detection and safety constraints.
 - [**obsidian**](plugins/obsidian/README.md) — PARA-aware Obsidian vault operations via the Obsidian CLI, plus a daily journal skill for morning planning and evening review.
 - [**presentation-drafter**](plugins/presentation-drafter/skills/presentation-drafter/SKILL.md) — *skill* — draft structured presentation outlines in Markdown using SCR and Winston's "How to Speak" principles.
+- [**presentation-designer**](plugins/presentation-designer/skills/presentation-designer/SKILL.md) — *skill* — design and build slide decks and one-pagers with a grid-first visual system (8px grid, 3 type sizes, 3 palettes, numbered slide types and components) and a pre-flight checklist.
 - [**statusline**](plugins/statusline/README.md) — *statusline* — colorful statusline showing model, cwd, git branch/dirty state, context-window usage bar, and output style.

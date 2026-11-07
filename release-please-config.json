@@ -51,6 +51,16 @@
         }
       ]
     },
+    "plugins/presentation-designer": {
+      "component": "presentation-designer",
+      "extra-files": [
+        {
+          "type": "json",
+          "path": ".claude-plugin/plugin.json",
+          "jsonpath": "$.version"
+        }
+      ]
+    },
     "plugins/presentation-drafter": {
       "component": "presentation-drafter",
       "extra-files": [

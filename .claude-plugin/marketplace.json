@@ -34,6 +34,13 @@
       "category": "productivity"
     },
     {
+      "name": "presentation-designer",
+      "source": "./plugins/presentation-designer",
+      "description": "Design and build slide decks, single slides and one-pagers with a grid-first visual system (8px grid, 3 type sizes, 3 palettes, numbered slide types and components) and a pre-flight checklist.",
+      "keywords": ["presentation", "slides", "design-system", "grid", "pptx", "deck"],
+      "category": "design"
+    },
+    {
       "name": "statusline",
       "source": "./plugins/statusline",
       "description": "Colorful statusline showing model, cwd, git branch/dirty state, context-window usage bar, and output style.",

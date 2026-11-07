@@ -17,9 +17,8 @@ Every slide type and component has a DS ID: `DS <group>.<n>`, variants add a let
 |---|---|
 | `references/tokens.md` | Always: grid, spacing, type sizes per mode, modes, palettes, chart colors, shape |
 | `references/components.md` | Planning slides: every slide type and component with its DS ID, limits and mode limits |
-| `references/examples.md` | Writing content: purpose plus good and bad examples per component |
+| `references/examples.md` | Writing content: one good and one bad example per component; read only the sections you need (`grep -n -A3 '## DS 4.3' references/examples.md`) |
 | `references/spec-format.md` | Writing the spec: frontmatter and per-slide fields |
-| `references/sources.md` | Using icons or checking contrast rules: licenses and standards |
 
 ## Two ways in
 

@@ -39,7 +39,7 @@ Opens a subchapter: breadcrumb, number, divider, title.
 
 ## DS 2.6 Closing
 The default last slide: one takeaway, contact in the footer band.
-- Good: "One template, every project" + one subtitle sentence.
+- Good: "One template, every project" + one subheadline sentence.
 - Bad: "Thank you!" as the only content - wastes the last impression.
 
 ## DS 2.7 ClosingNextSteps
@@ -69,7 +69,7 @@ A plain divider before the appendix.
 
 ## DS 2.12 AppendixSlide
 Any normal layout in the appendix, footer marked "| Appendix".
-- Good: Detailed table behind slide 9, subtitle says so.
+- Good: Detailed table behind slide 9, subheadline says so.
 - Bad: Appendix slides counted in the main total ("25 / 30").
 
 ## DS 2.13 OnePagerA

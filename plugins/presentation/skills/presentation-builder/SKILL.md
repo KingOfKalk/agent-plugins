@@ -38,7 +38,7 @@ Check what is installed before promising a format (`which google-chrome chromium
    - Use only the template's classes and the token variables. No new font sizes, colors, shadows or gradients.
    - Template classes: `.grid` + `.span-N`, `.card` / `.accent-box`, `.rows.rows-2|3` + `.row` (`.focus`), `.split` (`.split-4-8`, `.split-8-4`), `.closing`, `.hatch`, `pre.code`, `.list`, `.label`, `.source`, links via `<a>` (`.url` when the text is the URL). A component without a class: add CSS from tokens only and report it as a template gap.
    - Slides with a SourceNote get `.has-source` on the section; the body then ends 16px above the note.
-   - Body alignment from the spec field `align`: add `.center` to `.body` for `center` (default in `talk` / `both`), nothing for `top`.
+   - Body alignment from the spec field `align`: add `.center` to `.body` for `center` (default in `talk` / `both`), nothing for `top`. The script centers it on the 8px grid; after changing content or mode at runtime call `window.layoutDeck()`.
    - Speaker notes from `notes` go into `<aside class="notes">` (press N in the deck to show them).
 3. **Check the layout** (HTML and PDF):
 
@@ -47,7 +47,14 @@ Check what is installed before promising a format (`which google-chrome chromium
      --dump-dom "file://$PWD/deck.html?check" | grep -A20 'id="layout-check"'
    ```
 
-   `data-problems="0"` and `OK` means nothing leaves the safe area and no text overflows its box. Fix every reported problem in the HTML; if the content does not fit, go back to the designer instead of shrinking text.
+   `data-problems="0"` and `OK` means the deck passes. Each line names the slide and a category:
+
+   - `outside safe area` / `overflows its box`: content past the margins or text that does not fit.
+   - `grid:` a layout box (body child, grid item, card, row, code box, header, footer, source) off the 8px grid. Data-sized content (chart bars, images) gets `data-grid="off"`.
+   - `type:` a font size outside the mode's three sizes, a weight other than 400 / 700, italic, or a font outside the two stacks.
+   - `color:` a text, fill or stroke color outside the active palette and chart colors (`--series-1` to `--series-4`, `--context`).
+
+   Fix every reported problem in the HTML; if the content does not fit, go back to the designer instead of shrinking text. `data-check="off"` is only for on-screen controls that are not part of a slide's content.
 4. **Look at it.** Screenshot every slide and view the images:
 
    ```bash
@@ -67,7 +74,7 @@ Check what is installed before promising a format (`which google-chrome chromium
 ## Render checklist
 
 - [ ] Every spec slide rendered, in order; total matches the spec
-- [ ] Layout check `OK`; screenshots looked at, nothing clipped or overlapping
+- [ ] Layout check `OK` (safe area, overflow, grid, type, color); screenshots looked at, nothing clipped or overlapping
 - [ ] Positions, sizes and gaps on the 8px grid; margins 72 / 120; spans as in the spec
 - [ ] Only the two font stacks and the three sizes of the mode; weights 400 / 700
 - [ ] No italic (also not from browser defaults like `<em>`, `<i>`, `<cite>`, `<address>`), no strikethrough; links per DS 5.5 (URL text plain, other text underlined)

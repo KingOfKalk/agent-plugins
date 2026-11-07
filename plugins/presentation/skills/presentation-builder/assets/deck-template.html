@@ -12,6 +12,7 @@
   --bg: #FFFFFF; --surface: #EEEEEE; --text: #111111; --muted: #555555;
   --border: #AFAFAF; --separator: #E2E2E2; --accent: #0A55B5;
   --success: #1E7A3A; --warning: #8A5300; --error: #C0262D;
+  --series-1: #0A55B5; --series-2: #EB6834; --series-3: #1BAF7A; --series-4: #6250D6; --context: #AFAFAF;
   --radius: 4px;
   /* read mode sizes */
   --fs-l: 96px; --lh-l: 104px; --fs-n: 32px; --lh-n: 48px; --fs-s: 24px; --lh-s: 32px;
@@ -22,11 +23,13 @@ body[data-palette="dark"] {
   --bg: #141414; --surface: #222222; --text: #F2F2F2; --muted: #A3A3A3;
   --border: #555555; --separator: #2E2E2E; --accent: #6CA8FF;
   --success: #5CC98A; --warning: #F2B33D; --error: #FF7A7A;
+  --series-1: #6CA8FF; --series-2: #D95926; --series-3: #199E70; --series-4: #9085E9; --context: #555555;
 }
 body[data-palette="mono"] {
   --bg: #FFFFFF; --surface: #FFFFFF; --text: #000000; --muted: #4D4D4D;
   --border: #000000; --separator: #BDBDBD; --accent: #000000;
   --success: #000000; --warning: #000000; --error: #000000; --radius: 0;
+  --series-1: #000000; --series-2: #4D4D4D; --series-3: #000000; --series-4: #4D4D4D; --context: #BDBDBD;
 }
 body[data-mode="talk"], body[data-mode="both"] {
   --fs-n: 48px; --lh-n: 56px; --fs-s: 32px; --lh-s: 40px;
@@ -51,9 +54,10 @@ body { background: #000; font-family: var(--sans); color: var(--text); overflow:
 .headline { font-size: var(--fs-l); line-height: var(--lh-l); font-weight: 700; white-space: nowrap; }
 .subheadline { margin-top: 16px; color: var(--muted); }
 .body { margin-top: 48px; }
-/* Vertical alignment of the body (spec field "align"): add .center to .body */
-.body.center { height: var(--body-h); display: flex; flex-direction: column; justify-content: center; }
-.body.grid.center { display: grid; align-content: center; }
+/* Vertical alignment of the body (spec field "align"): add .center to .body.
+   The script centers it with a top padding rounded down to the 8px grid. */
+.body.center { height: var(--body-h); }
+.body.grid.center { align-content: start; }
 /* SourceNote (DS 5.3): add .has-source to the slide; the body ends 16px above the note */
 .has-source .body.center { height: calc(var(--body-h) - var(--source-h)); }
 /* Hatch for mono status strips and mono chart context (tokens.md) */
@@ -103,7 +107,7 @@ a.url { text-decoration: none; }
 .split .label + * { margin-top: 16px; }
 
 /* Closing (DS 2.6): one takeaway, block vertically centered, left aligned */
-.closing { position: absolute; left: 72px; top: 50%; transform: translateY(-50%); margin-top: -24px; }
+.closing { position: absolute; left: 72px; right: 72px; top: 72px; } /* top set by the script, centered and snapped to 8px */
 
 /* Code (DS 10.1) */
 .code-caption { font-size: var(--fs-s); line-height: var(--lh-s); font-weight: 700; margin-bottom: 8px; }
@@ -117,7 +121,7 @@ pre.code .kw { color: var(--accent); } pre.code .cm { color: var(--muted); }
 ul.list, ol.list { padding-left: 48px; } ul.list li + li, ol.list li + li { margin-top: 16px; }
 
 /* Source note (DS 5.3) */
-.source { position: absolute; left: 72px; top: calc(var(--footer-y) - 72px); font-size: var(--fs-s); line-height: var(--lh-s); color: var(--muted); }
+.source { position: absolute; left: 72px; right: 72px; top: calc(var(--footer-y) - 72px); font-size: var(--fs-s); line-height: var(--lh-s); color: var(--muted); }
 
 /* Footer (DS 1.2) */
 .footer {
@@ -190,6 +194,7 @@ body.show-notes #notes-panel { display: block; }
   });
 
   var current = 0;
+  var start = (parseInt(location.hash.slice(1), 10) || 1) - 1; // read before layout passes touch the hash
   function fit() {
     var scale = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
     var x = (window.innerWidth - 1920 * scale) / 2, y = (window.innerHeight - 1080 * scale) / 2;
@@ -213,32 +218,114 @@ body.show-notes #notes-panel { display: block; }
   window.addEventListener('resize', fit);
   window.addEventListener('hashchange', function () { show(parseInt(location.hash.slice(1), 10) - 1 || 0); });
 
-  // Layout check for the builder: elements outside the safe area, clipped or overflowing text.
-  // Run headless with "?check" in the URL; results land in <pre id="layout-check">.
-  window.checkLayout = function () {
-    var problems = [], keep = current;
+  // Vertical centering on the 8px grid: .body.center gets a top padding, .closing a top position,
+  // both rounded down to a multiple of 8. Call window.layoutDeck() again after changing mode or content.
+  window.layoutDeck = function () {
+    var keep = current;
     slides.forEach(function (s, k) {
       show(k);
-      var r = s.getBoundingClientRect(), scale = r.width / 1920;
-      s.querySelectorAll('*').forEach(function (el) {
-        if (el.closest('.notes') || el.closest('.footer')) return;
-        var b = el.getBoundingClientRect(); if (!b.width && !b.height) return;
-        var name = el.tagName.toLowerCase() + (el.className ? '.' + String(el.className).split(' ').join('.') : '');
-        var left = (b.left - r.left) / scale, top = (b.top - r.top) / scale;
-        var right = (b.right - r.left) / scale, bottom = (b.bottom - r.top) / scale;
-        var limit = 961;
-        var src = s.querySelector('.source');
-        if (src && !el.closest('.source')) limit = (src.getBoundingClientRect().top - r.top) / scale - 15;
-        if (left < 71 || top < 71 || right > 1849 || bottom > limit) problems.push('slide ' + (k + 1) + ': ' + name + ' outside safe area');
-        if (el.scrollWidth > el.clientWidth + 1 || el.scrollHeight > el.clientHeight + 8) problems.push('slide ' + (k + 1) + ': ' + name + ' overflows its box');
+      s.querySelectorAll('.body.center').forEach(function (el) {
+        el.style.paddingTop = '0px'; el.style.height = 'auto';
+        var content = el.offsetHeight;
+        el.style.height = '';
+        var free = el.offsetHeight - content;
+        el.style.paddingTop = Math.max(0, Math.floor(free / 16) * 8) + 'px';
+      });
+      s.querySelectorAll('.closing').forEach(function (el) {
+        var area = parseInt(getComputedStyle(document.body).getPropertyValue('--footer-y'), 10) - 40 - 72;
+        el.style.top = (72 + Math.max(0, Math.floor((area - el.offsetHeight) / 16) * 8)) + 'px';
       });
     });
     show(keep);
-    return problems;
+  };
+
+  // Layout check for the builder. Run headless with "?check" in the URL; results land in <pre id="layout-check">.
+  //   safe area / overflow: nothing outside the margins, no text overflowing its box
+  //   grid:  layout boxes (body children, grid items, cards, rows, code, header, footer, source) on the 8px grid,
+  //          allowing the 4px that 2px strokes add and a box's own strokes; data-grid="off" exempts data-sized content (bars, images)
+  //   type:  only the mode's three sizes, weights 400 / 700, no italic, only the sans and mono stacks
+  //   color: text, fill and stroke colors only from the active palette and chart colors
+  //   data-check="off" exempts an element and its children from all checks (e.g. on-screen controls)
+  function hex(c) {
+    var m = c.match(/rgba?\(([^)]+)\)/); if (!m) return null;
+    var p = m[1].split(',').map(function (v) { return parseFloat(v); });
+    if (p.length > 3 && p[3] === 0) return null;
+    return '#' + p.slice(0, 3).map(function (v) { return ('0' + Math.round(v).toString(16)).slice(-2); }).join('').toUpperCase();
+  }
+  function tokens() {
+    var cs = getComputedStyle(document.body), get = function (n) { return cs.getPropertyValue(n).trim(); };
+    var colors = {};
+    ['--bg', '--surface', '--text', '--muted', '--border', '--separator', '--accent', '--success', '--warning', '--error',
+     '--series-1', '--series-2', '--series-3', '--series-4', '--context'].forEach(function (n) { colors[get(n).toUpperCase()] = true; });
+    var norm = function (f) { return f.replace(/["'\s]/g, '').toLowerCase(); };
+    return { colors: colors, sizes: [get('--fs-s'), get('--fs-n'), get('--fs-l')].map(parseFloat),
+             families: [norm(get('--sans')), norm(get('--mono'))], norm: norm };
+  }
+  var BOX = '.body > *, .grid > *, .rows > *, .headline, .subheadline, .footer, .source, .card, .row, pre.code, .closing, .code-caption';
+  // 8px grid; a 2px stroke on both sides of a box shifts sizes and following positions by 4, so 4 is accepted too
+  function onGrid(v) { return Math.abs(v - Math.round(v / 4) * 4) < 0.5; }
+  function sizeOk(v, strokes) { return onGrid(v) || onGrid(v - strokes); }
+
+  window.checkLayout = function () {
+    var problems = [], keep = current, t = tokens();
+    slides.forEach(function (s, k) {
+      show(k);
+      var r = s.getBoundingClientRect(), scale = r.width / 1920;
+      var at = 'slide ' + (k + 1) + ': ';
+      s.querySelectorAll('*').forEach(function (el) {
+        if (el.closest('.notes') || el.closest('[data-check="off"]')) return;
+        var b = el.getBoundingClientRect(); if (!b.width && !b.height) return;
+        var cs = getComputedStyle(el);
+        var name = el.tagName.toLowerCase() + (el.className && typeof el.className === 'string' ? '.' + el.className.split(' ').join('.') : '');
+        var left = (b.left - r.left) / scale, top = (b.top - r.top) / scale, w = b.width / scale, h = b.height / scale;
+
+        // grid
+        if (el.matches(BOX) && !el.closest('[data-grid="off"]')) {
+          var sx = parseFloat(cs.borderLeftWidth) + parseFloat(cs.borderRightWidth);
+          var sy = parseFloat(cs.borderTopWidth) + parseFloat(cs.borderBottomWidth);
+          if (!onGrid(left) || !onGrid(top) || !sizeOk(w, sx) || !sizeOk(h, sy))
+            problems.push(at + 'grid: ' + name + ' at ' + Math.round(left) + ',' + Math.round(top) + ' size ' + Math.round(w) + 'x' + Math.round(h));
+        }
+        if (el.closest('svg') && el.tagName.toLowerCase() !== 'svg') return;
+
+        // type: only for elements that hold text themselves
+        var ownText = Array.prototype.some.call(el.childNodes, function (n) { return n.nodeType === 3 && n.textContent.trim(); });
+        if (ownText) {
+          var fs = parseFloat(cs.fontSize);
+          if (t.sizes.indexOf(fs) < 0) problems.push(at + 'type: ' + name + ' font-size ' + fs + 'px');
+          if (['400', '700'].indexOf(cs.fontWeight) < 0) problems.push(at + 'type: ' + name + ' font-weight ' + cs.fontWeight);
+          if (cs.fontStyle !== 'normal') problems.push(at + 'type: ' + name + ' font-style ' + cs.fontStyle);
+          if (t.families.indexOf(t.norm(cs.fontFamily)) < 0) problems.push(at + 'type: ' + name + ' font-family ' + cs.fontFamily);
+          var c = hex(cs.color); if (c && !t.colors[c]) problems.push(at + 'color: ' + name + ' text ' + c);
+        }
+
+        // color: fills and strokes
+        var bg = hex(cs.backgroundColor); if (bg && !t.colors[bg]) problems.push(at + 'color: ' + name + ' fill ' + bg);
+        ['Top', 'Right', 'Bottom', 'Left'].forEach(function (side) {
+          if (parseFloat(cs['border' + side + 'Width']) > 0 && cs['border' + side + 'Style'] !== 'none') {
+            var bc = hex(cs['border' + side + 'Color']);
+            if (bc && !t.colors[bc]) problems.push(at + 'color: ' + name + ' stroke ' + bc);
+          }
+        });
+
+        // safe area and overflow (footer may sit in the bottom band)
+        if (el.closest('.footer')) return;
+        var right = left + w, bottom = top + h;
+        var limit = 961;
+        var src = s.querySelector('.source');
+        if (src && !el.closest('.source')) limit = (src.getBoundingClientRect().top - r.top) / scale - 15;
+        if (left < 71 || top < 71 || right > 1849 || bottom > limit) problems.push(at + name + ' outside safe area');
+        if (el.scrollWidth > el.clientWidth + 1 || el.scrollHeight > el.clientHeight + 8) problems.push(at + name + ' overflows its box');
+      });
+    });
+    show(keep);
+    // one line per problem, duplicates folded
+    return problems.filter(function (p, i) { return problems.indexOf(p) === i; });
   };
 
   fit();
-  show((parseInt(location.hash.slice(1), 10) || 1) - 1);
+  window.layoutDeck();
+  show(start);
   if (/[?&]check\b/.test(location.search)) {
     var out = document.createElement('pre'); out.id = 'layout-check';
     var found = window.checkLayout(); out.setAttribute('data-problems', found.length);

@@ -60,7 +60,8 @@ Run the design checklist below. Then:
 ## Core rules
 
 - Canvas 1920 x 1080; base unit 8px; margins 72 (top, left, right) and 120 (bottom, footer band); 12 columns of 104px, gutters 48px.
-- 2 families (sans for text, mono for code), 3 sizes per deck (`read` 24 / 32 / 96, `talk` 32 / 48 / 96), weights 400 and 700, no italic.
+- 2 families (sans for text, mono for code), 3 sizes per deck (`read` 24 / 32 / 96, `talk` 32 / 48 / 96), weights 400 and 700.
+- Type styles (tokens.md): bold only where a component defines it or as InlineHighlight; never italic, never strikethrough; underline only for links whose text is not the URL; no ALL CAPS or letter-spacing unless agreed as an exception.
 - Every content slide: headline (large, bold, 1 line) + subheadline (one full sentence with the takeaway; from a draft, the key message).
 - Light palette by default; dark and mono (print) on request.
 - One accent focus per slide; status colors (success, warning, error) only for status and always with a word.
@@ -75,6 +76,7 @@ The rendering checks (pixels, overflow, fonts, page numbers) are done by `presen
 - [ ] Spans per row add up to 12; block limits respected
 - [ ] Headlines fit 1 line (about 20-24 characters); subheadline is one full takeaway sentence
 - [ ] One accent focus per slide, named in `accent`; status colors only with labels
+- [ ] Type styles: no italic, no strikethrough, no plain bold in running text; links follow DS 5.5; ALL CAPS / letter-spacing only as agreed exceptions
 - [ ] Lists, blocks, rows, tables and code within limits for the mode
 - [ ] Sources for numbers as SourceNote; placeholders bracketed and listed
 - [ ] Spec complete: every field the builder needs is there, no open design decisions

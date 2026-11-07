@@ -373,6 +373,7 @@ Purpose, two good and two bad examples per component, each with the reason.
 **Bad**
 - A 5-line quote - shorten or paraphrase.
 - A quote without attribution.
+- A quote set in italic - quotation marks already mark it.
 
 ## DS 5.3 SourceNote
 
@@ -397,6 +398,19 @@ Purpose, two good and two bad examples per component, each with the reason.
 **Bad**
 - Three highlighted words in one paragraph.
 - A highlighted word plus an accent box elsewhere.
+- A plain bold phrase in running text - a second level of emphasis competing with the accent.
+
+## DS 5.5 Link
+
+**Purpose:** A reference the reader can open, recognizable in print as well.
+
+**Good**
+- "github.com/KingOfKalk/agent-plugins" as the link text - the URL itself, no underline needed.
+- "Repo on GitHub" underlined - the underline is the only sign that it is a link.
+
+**Bad**
+- "Repo on GitHub" in accent color without underline - color alone does not mark a link and uses up the accent.
+- A long URL in the body of a `talk` slide - put it on the closing slide or in the appendix.
 
 ## DS 6.1 AccentBox
 

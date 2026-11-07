@@ -38,7 +38,20 @@ Three sizes per deck; the set depends on the mode (see Modes below).
 | normal | 32 / 48 | 48 / 56 | subheadline (muted), body, lists, card titles (bold) |
 | small | 24 / 32 | 32 / 40 | footer, card text, table cells, captions, code |
 
-Weights 400 and 700 only; no italic. Headline max 1 line (about 20-24 characters); title slide may use 2.
+Weights 400 and 700 only. Headline max 1 line (about 20-24 characters); title slide may use 2.
+
+## Type styles
+
+| Style | Rule |
+|---|---|
+| Bold (700) | structure only, where a component defines it (headline, chapter number, card title, row label, table header and total, code caption, agenda chapter, next-step action word); in running text only as DS 5.4 InlineHighlight (accent + bold); never plain bold for emphasis, never whole sentences or paragraphs |
+| Italic | never, also not for quotes, code comments or foreign terms |
+| Underline | only for links whose text is not the URL itself (DS 5.5); never for emphasis |
+| Strikethrough | never; removed scope gets a NeutralTag, diffs use their sign |
+| ALL CAPS | not used, except for acronyms; other use only as an exception agreed in planning |
+| Letter-spacing | default only; changes only as an exception agreed in planning |
+
+In `talk`, emphasis comes from the accent or numbered arrows / callouts (as in DS 11.2), never from a type style. These rules hold in every palette and output format (HTML, PDF, PPTX).
 
 ## Modes
 

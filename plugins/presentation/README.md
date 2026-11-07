@@ -21,6 +21,12 @@ Presentations in three steps: content, look, implementation. Each step is a skil
 - **Draft first:** drafter, then designer, then builder. The draft frontmatter (`audience`, `mode`, `goal`, `duration`, `winston`) carries over, so the designer does not ask again.
 - **Quick:** start with the designer for a concrete idea (e.g. a one-slider). It asks for audience and mode, writes the spec and hands straight over to the builder.
 
+## Styleguide
+
+[`styleguide.html`](skills/presentation-designer/assets/styleguide.html) shows the design system as a deck: grid, spacing, type, palette with contrast ratios, status, chart colors and the main components. Open it in a browser; the buttons top right (or T / M) switch the theme (light, dark, mono) and the mode (read, talk).
+
+A change to `tokens.md`, `components.md` or the deck template rebuilds the styleguide from [`styleguide-spec.md`](skills/presentation-designer/assets/styleguide-spec.md) in the same PR, and its layout check stays `OK` in every theme and mode (`styleguide.html?check&theme=dark&mode=talk`).
+
 ## Modes
 
 - `talk`: presented live; Winston's slide rules (larger type, little text, no bullet lists).

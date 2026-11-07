@@ -74,7 +74,9 @@ The rendering checks (pixels, overflow, fonts, page numbers) are done by `presen
 - [ ] Mode set; sizes and mode limits match it
 - [ ] Every slide maps to a DS ID; exceptions were agreed and listed in the spec
 - [ ] Spans per row add up to 12; block limits respected
-- [ ] Headlines fit 1 line (about 20-24 characters); subheadline is one full takeaway sentence
+- [ ] Headlines fit 1 line (about 28 characters at most); subheadline is one full takeaway sentence
+- [ ] Footer per slide type (title: metadata, closing: contact + number, one-pager: date + sources); SourceNote at the bottom of the body, body ends 16px above it
+- [ ] Charts: direct labels on all marks; status per tokens.md (word + stroke, mono hatch strip)
 - [ ] One accent focus per slide, named in `accent`; status colors only with labels
 - [ ] Type styles: no italic, no strikethrough, no plain bold in running text; links follow DS 5.5; ALL CAPS / letter-spacing only as agreed exceptions
 - [ ] Lists, blocks, rows, tables and code within limits for the mode

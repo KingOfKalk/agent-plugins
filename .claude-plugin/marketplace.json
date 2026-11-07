@@ -8,14 +8,14 @@
     {
       "name": "git",
       "source": "./plugins/git",
-      "description": "Git and forge workflow: atomic Conventional Commits, an issue-to-pull-request ship skill, and guardrail hooks (no git -C, no commits/pushes on main, origin only, no AI attribution).",
+      "description": "Git and forge workflow: atomic Conventional Commits, an issue-to-pull-request git-ship skill, and guardrail hooks (no git -C, no commits/pushes on main, origin only, no AI attribution).",
       "keywords": ["git", "commit", "conventional-commits", "pull-request", "github", "hooks"],
       "category": "developer-tools"
     },
     {
       "name": "docker",
       "source": "./plugins/docker",
-      "description": "Manage Docker containers and Docker Compose services with automatic devcontainer detection and safety constraints. Includes a container skill (docker CLI) and a compose skill (docker compose).",
+      "description": "Manage Docker containers and Docker Compose services with automatic devcontainer detection and safety constraints. Includes a docker-container skill (docker CLI) and a docker-compose skill (docker compose).",
       "keywords": ["docker", "docker-compose", "containers", "devcontainer"],
       "category": "developer-tools"
     },

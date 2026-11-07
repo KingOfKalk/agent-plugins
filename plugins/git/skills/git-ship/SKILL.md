@@ -1,5 +1,5 @@
 ---
-name: ship
+name: git-ship
 description: Drive a task through the forge workflow - issue, dedicated branch, commits, push, pull request, CI and review monitoring - until it is ready for the user to merge. Only runs when the user invokes it.
 argument-hint: "[task description or existing issue number, e.g. '#42']"
 disable-model-invocation: true
@@ -80,7 +80,7 @@ If the task still needs implementing, do it now, following the repository's own 
 
 ### 4. Commit
 
-Hand off to the `commit` skill (`git:commit`). Do not write commit messages here, and do not repeat its rules. The commit skill reads the issue number from the branch name and adds `Refs #<issue-number>` to each commit body.
+Hand off to the `git-commit` skill (`git:git-commit`). Do not write commit messages here, and do not repeat its rules. The `git-commit` skill reads the issue number from the branch name and adds `Refs #<issue-number>` to each commit body.
 
 ### 5. Push and Pull Request
 
@@ -109,7 +109,7 @@ Hand off to the `commit` skill (`git:commit`). Do not write commit messages here
 
 After the pull request is open:
 
-- CI: `gh pr checks <number> --repo <owner>/<repo>` (add `--watch` to wait). On failure, read the logs (`gh run view <run-id> --log-failed --repo <owner>/<repo>`), find the root cause, fix it, commit through the commit skill, push.
+- CI: `gh pr checks <number> --repo <owner>/<repo>` (add `--watch` to wait). On failure, read the logs (`gh run view <run-id> --log-failed --repo <owner>/<repo>`), find the root cause, fix it, commit through the `git-commit` skill, push.
 - Reviews: `gh pr view <number> --repo <owner>/<repo> --comments`. Address each comment, or reply explaining why not.
 - Merge conflicts: rebase onto the base branch, then push to your own branch only:
   1. `git fetch origin`

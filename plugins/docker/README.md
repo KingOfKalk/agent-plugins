@@ -10,5 +10,5 @@ Manage Docker containers and Docker Compose services with automatic devcontainer
 
 ## Skills
 
-- [`container`](skills/container/SKILL.md) — manage Docker containers through the `docker` CLI: `ps`, `logs`, `exec`, `stop`, `start`, `rm`, `images`, `pull`, `build`, `inspect`, `stats`, `prune`. Guards `exec`, `stop`, and `rm` so the skill cannot destroy its own devcontainer.
-- [`compose`](skills/compose/SKILL.md) — manage Docker Compose services: `status`, `up`, `rebuild`, `restart`, `stop`, `logs`, `pull`, `config`, `health`. Blocks `down` inside a devcontainer, forces `--no-deps` on `up`, requires explicit service names for `restart`/`stop`, and forbids `--follow` on logs.
+- [`docker-container`](skills/docker-container/SKILL.md) — manage Docker containers through the `docker` CLI: `ps`, `logs`, `exec`, `stop`, `start`, `rm`, `images`, `pull`, `build`, `inspect`, `stats`, `prune`. Guards `exec`, `stop`, and `rm` so the skill cannot destroy its own devcontainer.
+- [`docker-compose`](skills/docker-compose/SKILL.md) — manage Docker Compose services: `status`, `up`, `rebuild`, `restart`, `stop`, `logs`, `pull`, `config`, `health`. Blocks `down` inside a devcontainer, forces `--no-deps` on `up`, requires explicit service names for `restart`/`stop`, and forbids `--follow` on logs.

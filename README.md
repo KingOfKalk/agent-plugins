@@ -1,37 +1,46 @@
-# Claude Code Plugins
+# Agent Plugins
 
-A collection of Claude Code plugins, installable via the marketplace.
+Plugins and skills for coding agents by KingOfKalk — Claude Code (primary target), Codex CLI compatible (both read `.claude-plugin/marketplace.json`), and skills usable by any other agent that reads `SKILL.md`.
+
+The repository is `KingOfKalk/agent-plugins`, but the marketplace name is `kingofkalk-plugins` — the two differ on purpose.
 
 ## Installation
 
+Claude Code:
+
 ```
-/plugin marketplace add kingofkalk/claude-code-plugins
+/plugin marketplace add KingOfKalk/agent-plugins
 ```
 
 or in your terminal:
 
 ```bash
-claude plugin marketplace add kingofkalk/claude-code-plugins
+claude plugin marketplace add KingOfKalk/agent-plugins
 ```
 
+Codex CLI:
+
+```bash
+codex plugin marketplace add KingOfKalk/agent-plugins
+```
 
 To pin a specific version:
 
 ```
-/plugin marketplace add kingofkalk/claude-code-plugins@v1
+/plugin marketplace add KingOfKalk/agent-plugins@v1
 ```
 
 ## Installing a single plugin
 
 Once the marketplace is added, install individual plugins by name. The
-marketplace identifier is `kingofkalk-claude-code-plugins`:
+marketplace identifier is `kingofkalk-plugins`:
 
 ```
-/plugin install git@kingofkalk-claude-code-plugins
+/plugin install git@kingofkalk-plugins
 /reload-plugins
 ```
 
-## Available Plugins
+## Available plugins and skills
 
 - [**git**](plugins/git/README.md) — atomic Conventional Commits (`commit`), issue-to-pull-request workflow (`ship`), and guardrail hooks blocking `git -C`, commits/pushes on `main`, pushes to non-`origin` remotes, and AI attribution.
 - [**docker**](plugins/docker/README.md) — Docker CLI and Docker Compose skills with automatic devcontainer detection and safety constraints.

@@ -31,3 +31,13 @@ Presentations in three steps: content, look, implementation. Each step is a skil
 
 - Content changes: edit the draft, run the designer again.
 - Small text or layout fixes: edit the spec, run the builder again.
+
+## Tests
+
+Eval scenarios for the skills live in `skills/presentation-designer/evals/` (one folder per case: `prompt.md`, `case.yaml`, `graders/`, input files in `files/`):
+
+- `quick-one-slider`: quick path from an idea to spec and HTML.
+- `deck-from-draft`: a drafter outline to a talk-mode spec.
+- `review-html`: review of a deck with planted violations.
+
+Run them from the skill directory with `claude plugin eval . --allow-tools Write,Edit,Bash --scaffold` (real, billed model runs).

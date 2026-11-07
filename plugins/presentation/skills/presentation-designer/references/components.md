@@ -39,7 +39,7 @@ The limits below are for `read`. In `talk` and `both` (see tokens.md, Modes) the
 - **2.11 AppendixDivider** - plain "A" divider like a chapter slide
 - **2.12 AppendixSlide** - any layout; pages A1, A2 ..., not counted in the main total
 - **2.13 OnePagerA / 2.14 OnePagerB** - two example one-pagers: A) content 8 | key numbers 4, B) why / what / next + one table; any other one-pager has no fixed layout and is composed freely; body may use small; footer date + sources, no page number
-- **2.15 ClosingContributions** - Winston's last slide: headline + subheadline, numbered list of 3-5 contributions (what was achieved or recommended, one line each), whole block vertically centered; stays up during Q&A; contact in the footer band
+- **2.15 ClosingContributions** - Winston's last slide: headline + subheadline, numbered list of 3-5 contributions (what was achieved or recommended, one line each), body vertically centered (`align: center`); stays up during Q&A; contact in the footer band
 - **Last slide** - `winston: true`: 2.15 ClosingContributions, or 2.7 ClosingNextSteps for decks that ask for a decision; never 2.8. `winston: false`: 2.6 by default, 2.7 or 2.8 as needed. The appendix follows after the last slide either way.
 
 ## 3 Layouts

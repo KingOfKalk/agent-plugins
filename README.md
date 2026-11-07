@@ -24,11 +24,24 @@ Codex CLI:
 codex plugin marketplace add KingOfKalk/agent-plugins
 ```
 
-To pin a specific version:
+### Pinning a ref (Claude Code)
 
-```
-/plugin marketplace add KingOfKalk/agent-plugins@v1
-```
+Without a ref, the marketplace tracks `main`. Append `#<ref>` to pin a branch or tag:
+
+- Latest released state (moves on every release, any plugin):
+
+  ```
+  /plugin marketplace add KingOfKalk/agent-plugins#latest
+  ```
+
+- Exact release, via a repo tag (`v<version>`) or a plugin tag (`<plugin>--v<version>`):
+
+  ```
+  /plugin marketplace add KingOfKalk/agent-plugins#v4.1.1
+  /plugin marketplace add KingOfKalk/agent-plugins#git--v1.0.0
+  ```
+
+  A pin freezes the whole marketplace at that commit — a plugin tag also pins every other plugin to its state at that commit.
 
 ## Installing a single plugin
 

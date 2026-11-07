@@ -12,7 +12,24 @@ jobs:
   release-please:
     runs-on: ubuntu-26.04
     steps:
-      - uses: googleapis/release-please-action@v5.0.0
+      - id: release
+        uses: googleapis/release-please-action@v5.0.0
         with:
           config-file: release-please-config.json
           manifest-file: .release-please-manifest.json
+
+      # Fast-forward the `latest` branch to the release commit after any
+      # release (root or plugin). Users pin `KingOfKalk/agent-plugins#latest`
+      # to get released code only. Fast-forward only: fails if `latest` diverged.
+      - name: Update latest branch
+        if: ${{ steps.release.outputs.releases_created == 'true' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if gh api "repos/${GITHUB_REPOSITORY}/git/ref/heads/latest" --silent 2>/dev/null; then
+            gh api -X PATCH "repos/${GITHUB_REPOSITORY}/git/refs/heads/latest" \
+              -f sha="${GITHUB_SHA}" -F force=false
+          else
+            gh api -X POST "repos/${GITHUB_REPOSITORY}/git/refs" \
+              -f ref=refs/heads/latest -f sha="${GITHUB_SHA}"
+          fi

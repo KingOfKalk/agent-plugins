@@ -35,6 +35,7 @@ One `##` section per slide, numbered as shown in the footer (`A1`, `A2` for appe
 - headline: Deploys take 3 days
 - subheadline: Every release waits for a manual approval that nobody owns.
 - accent: big number on the right
+- align: center
 - blocks:
   - DS 8.1 ChartBar, span 8: deploy lead time per month, Jan-Jun; focus bar Jun (accent), rest context gray; values [__]
   - DS 6.2-a BigNumber, span 4: "3 days" / label "median lead time"
@@ -52,6 +53,7 @@ One `##` section per slide, numbered as shown in the footer (`A1`, `A2` for appe
 | headline | content slides | 1 line, about 20-24 characters |
 | subheadline | content slides | one full sentence, the takeaway (the draft's key message) |
 | accent | yes | the one focus of the slide; `none` if there is none |
+| align | optional | vertical alignment of the body: `top` or `center`; default `center` in `talk` / `both`, `top` in `read` |
 | blocks | if body | one line per block: DS ID, span (columns), content; exact text in quotes |
 | source | if numbers | SourceNote text (DS 5.3) |
 | notes | optional | speaker notes; in `both`, the reading detail goes here |

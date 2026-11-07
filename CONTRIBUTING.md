@@ -77,8 +77,10 @@ Thanks for your interest. This repo follows a tight, issue-driven workflow. This
   - Commits are assigned by changed file paths, not by scope — a commit touching only `plugins/git/**` releases only `git`.
 - The repo root (`.claude-plugin/plugin.json`, root `CHANGELOG.md`, tags `v<version>`) is versioned separately and only bumps for changes outside `plugins/`.
 - The `latest` branch is fast-forwarded to the release commit after every release (root or any plugin) by [release.yml](.github/workflows/release.yml). Users pin `#latest` to get released code only. Never commit to `latest` directly.
-- New plugin: add a package entry in `release-please-config.json`, a `"version"` in its `plugin.json`, and a matching entry in `.release-please-manifest.json`.
-  - release-please treats the manifest version as already released, so the first release of a new plugin is not 1.0.0: a `feat` releases 1.1.0, a breaking change 2.0.0. This is accepted; do not pin it with `release-as`.
+- New plugin: release-please treats the manifest version as already released, so without a pin the first release would be 1.1.0 (`feat`) or 2.0.0 (breaking). Pin it to 1.0.0:
+  - `plugin.json`: `"version": "0.0.0"`; `.release-please-manifest.json`: `"plugins/<plugin>": "0.0.0"`.
+  - `release-please-config.json`: add the package entry with `"release-as": "1.0.0"`.
+  - After the release PR that publishes 1.0.0 is merged, remove `"release-as"` in a follow-up PR; otherwise every later release stays at 1.0.0.
   - The same applies when a plugin is renamed (new package path and component).
 - Version bumps:
   - Major: breaking change (`!` or `BREAKING CHANGE:` footer).

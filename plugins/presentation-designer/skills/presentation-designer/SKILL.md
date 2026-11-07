@@ -5,9 +5,11 @@ description: Design and build slide decks, single slides and one-pagers with a g
 
 # Presentation designer
 
-A calm, grid-first visual system for 16:9 decks and one-pagers. This file holds the workflow and the core rules; the details live in `references/`. If a Design System artifact or design tokens for this guide exist in the session, use them; where they differ, they win.
+A calm, grid-first visual system for 16:9 decks and one-pagers. This file holds the workflow and the core rules; the details live in `references/`. If the user provides brand tokens or a design-system file, use them; where they differ from this guide, they win.
 
 ## Reference files
+
+Every slide type and component has a DS ID: `DS <group>.<n>`, variants add a letter (`DS 4.1`, `DS 9.3-d`), defined in `references/components.md`.
 
 Read the ones the task needs before building:
 
@@ -30,7 +32,7 @@ Read the ones the task needs before building:
 ## Core rules
 
 - Canvas 1920 x 1080; base unit 8px; margins 72 (top, left, right) and 120 (bottom, footer band); 12 columns of 104px, gutters 48px. Nothing off the grid, nothing past the margins.
-- 2 families (sans for text, mono for code), 3 sizes (24 / 32 / 96), weights 400 and 700.
+- 2 families (sans for text, mono for code), 3 sizes (24 / 32 / 96), weights 400 and 700, no italic.
 - Every content slide: headline (large, bold, 1 line) + subheadline (one full sentence with the takeaway).
 - Light palette by default; dark and mono (print) on request.
 - One accent focus per slide; status colors (success, warning, error) only for status and always with a word.
@@ -39,8 +41,8 @@ Read the ones the task needs before building:
 ## Pre-flight checklist
 
 - [ ] Every slide maps to a DS ID; exceptions were agreed in planning
-- [ ] Grid: margins 72 / 120, 12 columns, all values multiples of 8, nothing past the margins
-- [ ] Only 2 families and the 3 sizes (24 / 32 / 96), weights 400 / 700
+- [ ] Grid: margins 72 / 120, 12 columns, positions, sizes and gaps multiples of 8 (strokes 2 / 4 and radius 4 excepted), nothing past the margins
+- [ ] Only 2 families and the 3 sizes (24 / 32 / 96), weights 400 / 700, no italic
 - [ ] Headlines 1 line; subheadline is one full takeaway sentence
 - [ ] One accent focus per slide; status colors only with labels
 - [ ] Boxes: surface + 2px border + 4px radius; no shadows, no gradients

@@ -503,7 +503,7 @@ Purpose, two good and two bad examples per component, each with the reason.
 - Inputs vs outputs in a test result table.
 
 **Bad**
-- A divider between every column - spreadsheet look.
+- Group dividers between every column - no groups left; use plain column lines (DS 7.1 options) instead.
 - Dividers that don't match any logical group.
 
 ## DS 7.4 TablesTwo
@@ -643,8 +643,8 @@ Purpose, two good and two bad examples per component, each with the reason.
 **Purpose:** Framed code or commands, mono, small size, max 15 lines.
 
 **Good**
-- CB-B with line 3 highlighted - the audience sees the one line that matters.
-- CB-C with one command and its output - shows what really happens.
+- DS 10.1-b with line 3 highlighted - the audience sees the one line that matters.
+- DS 10.1-c with one command and its output - shows what really happens.
 
 **Bad**
 - A 40-line file pasted in full - shorten to the relevant part.
@@ -655,8 +655,8 @@ Purpose, two good and two bad examples per component, each with the reason.
 **Purpose:** Handling code lines too long for the box.
 
 **Good**
-- A docker command broken with \ (LL-C).
-- A wider 12-column box for one long command (LL-D).
+- A docker command broken with \ (DS 10.2-c).
+- A wider 12-column box for one long command (DS 10.2-d).
 
 **Bad**
 - Shrinking the font to fit - never.

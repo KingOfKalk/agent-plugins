@@ -26,7 +26,7 @@ Learned while building real decks with this system.
 ## Code
 
 - Keep indentation (non-breaking spaces where the tool collapses whitespace).
-- One row per code line, no wrapping unless 10.2-a is chosen; highlighted line = separator fill across the full box width.
+- One row per code line, no wrapping unless 10.2-a is chosen; highlighted line = 4px accent bar at the left edge of the box, spanning the line height, and its line number in accent.
 - Line numbers in their own 48px column, muted, right-aligned.
 
 ## Fonts

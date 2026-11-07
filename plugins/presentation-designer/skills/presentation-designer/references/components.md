@@ -21,7 +21,7 @@ Reference components as `DS <group>.<n>`; variants add a letter (`DS 9.3-d`). Ne
 - **2.10 AppendixSingle** - same block left, the appendix content itself right (sources, glossary)
 - **2.11 AppendixDivider** - plain "A" divider like a chapter slide
 - **2.12 AppendixSlide** - any layout; pages A1, A2 ..., not counted in the main total
-- **2.13 / 2.14 One-pager examples** - one-pagers have no fixed layout; compose freely; body may use small; footer date + sources, no page number
+- **2.13 OnePagerA / 2.14 OnePagerB** - two example one-pagers: A) content 8 | key numbers 4, B) why / what / next + one table; any other one-pager has no fixed layout and is composed freely; body may use small; footer date + sources, no page number
 
 ## 3 Layouts
 
@@ -34,9 +34,9 @@ Reference components as `DS <group>.<n>`; variants add a letter (`DS 9.3-d`). Ne
 
 - **4.1 Cards** - 2-4 equal cards with title (normal bold) + text (small)
 - **4.2 Tiles** - 2-4 text-only blocks
-- **4.3 Rows** - max 3 full-width bands (312 / 192px), label | text as 3 | 9 or 4 | 8, one line each
+- **4.3 Rows** - max 3 full-width bands (each 312px high with 2 bands, 192px with 3; 48px gaps), label | text as 3 | 9 or 4 | 8, one line each
 - **4.4 MixedA** 6 | 3 | 3 - **4.5 MixedB** 6 | two stacked 6 - **4.6 MixedC** 8 | two stacked 4 - **4.7 MixedD** 12 on top, 6 + 6 below; mirrored allowed
-- Limits: max 4 blocks per row and slide; spans 3, 4, 6, 8, 12 only; big block >= 2x a small one; stacked splits exactly 2 equal halves
+- Limits for blocks (4.1-4.7): max 4 blocks per row and slide; block spans 3, 4, 6, 8, 12 only (splits inside a block, like the Rows label | text, and slide layouts like the Agenda are not blocks); big block >= 2x a small one; stacked splits exactly 2 equal halves
 
 ## 5 Text
 
@@ -57,14 +57,14 @@ Reference components as `DS <group>.<n>`; variants add a letter (`DS 9.3-d`). Ne
 ## 7 Tables
 
 - **7.1 Table** - full width, max 10 rows + header, max 6 columns; header bold on surface with 2px border below; 2px separator lines between rows; text left, numbers right, tabular figures; units in the header; max one highlighted row (accent bold); total row bold with 2px border above; frame 2px + 4px radius
-- Options: **7.2 Zebra** (number-heavy; mono falls back to lines), **7.3 Group dividers** (2px border between column groups), column lines between all columns (header in border, body in separator)
+- Options: **7.2 TableZebra** (number-heavy; mono falls back to lines), **7.3 TableGroups** (2px border-color dividers between logical column groups only), plain column lines between all columns (2px; header in border, body in separator color - lighter than group dividers)
 - **7.4 TablesTwo** 6 | 6, max 8 rows - **7.5 TablesFour** 3 | 3 | 3 | 3, max 4 rows - **7.6 TablesFourGrid** 2 x 2, max 3 rows; small bold caption above each
 
 ## 8 Charts
 
-- **8.1 Bar**, **8.2 Line**, **8.3 Ranking** (sorted horizontal bars) - focus + context: one accent, rest context gray
-- **8.4 Series** - up to 4 equal series in the chart palette, direct labels
-- **8.5 Donut** - max 3 slices, focus slice accent, value large in the middle
+- **8.1 ChartBar**, **8.2 ChartLine**, **8.3 ChartRanking** (sorted horizontal bars) - focus + context: one accent, rest context gray
+- **8.4 ChartSeries** - up to 4 equal series in the chart palette, direct labels
+- **8.5 ChartDonut** - max 3 slices, focus slice accent, value large in the middle
 - Grid lines separator, baseline border, chart text small; bars 4px radius on the data end only; lines 4px focus, 2px context; never two y-axes, 3D or rainbow; static, no hover
 
 ## 9 Gauges and progress
@@ -75,8 +75,8 @@ Reference components as `DS <group>.<n>`; variants add a letter (`DS 9.3-d`). Ne
 
 ## 10 Code
 
-- **10.1 CodeBox** - surface fill, 2px border, 4px radius, 24px padding, mono small, max 15 lines, file caption above (small bold); a) plain, b) line numbers + highlighted line (separator fill), c) commands with muted "$ " + muted output, d) diff (+ success, - error, unchanged muted, sign always shown), e) inline code (mono, surface fill, same size as text); keywords accent, comments muted italic
-- **10.2 Long lines** - a) soft wrap, b) truncate with muted "...", c) manual breaks, d) wider box (12 columns ~115 chars, 8 ~70, 6 ~55, 4 ~33); prefer c, d, b, a; never a smaller font
+- **10.1 CodeBox** - surface fill, 2px border, 4px radius, 24px padding, mono small, max 15 lines, file caption above (small bold); a) plain, b) line numbers + highlighted line (4px accent bar at the left edge of the box, line number in accent), c) commands with muted "$ " + muted output, d) diff (+ success, - error, unchanged muted, sign always shown), e) inline code (mono, surface fill, same size as text); keywords accent, comments muted
+- **10.2 CodeLongLines** - a) soft wrap, b) truncate with muted "...", c) manual breaks, d) wider box (12 columns ~115 chars, 8 ~70, 6 ~55, 4 ~33); prefer c, d, b, a; never a smaller font
 
 ## 11 Media
 

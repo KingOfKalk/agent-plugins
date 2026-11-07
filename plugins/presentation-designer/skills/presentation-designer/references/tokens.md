@@ -2,8 +2,8 @@
 
 ## Grid
 
-- Canvas 1920 x 1080, fixed, scaled as a whole. Base unit u = 8px; every length is a multiple of 8.
-- Margins: top / left / right 72px (9u), bottom 120px (15u) = footer band (40 gap, 32 footer line, 48 to edge). Content area 1776 x 888.
+- Canvas 1920 x 1080, fixed, scaled as a whole. Base unit u = 8px; every position, size and gap is a multiple of 8. Only exceptions: stroke widths (2, 4) and radius (4).
+- Margins: top / left / right 72px (9u), bottom 120px (15u) = footer band (32 footer line, 48 to edge; the remaining 40 above the footer line is derived, not a spacing value). Content area 1776 x 888.
 - 12 columns of 104px (13u), gutters 48px (6u). Splits evenly into 1, 2, 3, 4, 6.
 - Header: headline 104px line, 16px gap, subheadline 48px line, 48px gap; body from y 288 to 960 (672px).
 - Footer line at y 1000, small, muted: deck title left, page number "7 / 18" right.
@@ -36,7 +36,7 @@ Only these values: 8, 16, 24, 32, 48, 72, 120.
 | normal | 32 / 48 | subheadline (muted), body, lists, card titles (bold) |
 | small | 24 / 32 | footer, card text, table cells, captions, code |
 
-Weights 400 and 700 only. Headline max 1 line (about 20-24 characters); title slide may use 2.
+Weights 400 and 700 only; no italic. Headline max 1 line (about 20-24 characters); title slide may use 2.
 
 ## Palettes
 

@@ -50,7 +50,7 @@ The limits below are for `read`. In `talk` and `both` (see tokens.md, Modes) the
 
 - **4.1 Cards** - 2-4 equal cards with title (normal bold) + text (small)
 - **4.2 Tiles** - 2-4 text-only blocks
-- **4.3 Rows** - max 3 full-width bands (each 312px high with 2 bands, 192px with 3; 48px gaps), label | text as 3 | 9 or 4 | 8, one line each
+- **4.3 Rows** - max 3 full-width bands (48px gaps; `read`: 312px high with 2 bands, 192px with 3; `talk`: 304px with 2, 184px with 3), label | text as 3 | 9 or 4 | 8, one line each
 - **4.4 MixedA** 6 | 3 | 3 - **4.5 MixedB** 6 | two stacked 6 - **4.6 MixedC** 8 | two stacked 4 - **4.7 MixedD** 12 on top, 6 + 6 below; mirrored allowed
 - Limits for blocks (4.1-4.7): max 4 blocks per row and slide; block spans 3, 4, 6, 8, 12 only (splits inside a block, like the Rows label | text, and slide layouts like the Agenda are not blocks); big block >= 2x a small one; stacked splits exactly 2 equal halves
 

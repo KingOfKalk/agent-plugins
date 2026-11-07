@@ -50,6 +50,8 @@ Thanks for your interest. This repo follows a tight, issue-driven workflow. This
 - Description: imperative mood, lowercase, no trailing period.
 - Body: reference the issue with `Refs #<issue-number>` (if one exists).
 - Breaking changes: add `!` after type/scope and a `BREAKING CHANGE: <details>` footer.
+  - Write the footer on a single line. release-please reads any continuation line that starts with `<word>:` (e.g. `/git:git-commit`) as a new footer and cuts the release note off there.
+  - If a truncated footer is already merged, fix the release note with a `BEGIN_COMMIT_OVERRIDE` ... `END_COMMIT_OVERRIDE` block in the body of the merged (squash) PR.
 - Atomic: one logical concern per commit. Don't mix unrelated changes.
 - No AI attribution or co-authoring trailers.
 
@@ -76,6 +78,8 @@ Thanks for your interest. This repo follows a tight, issue-driven workflow. This
 - The repo root (`.claude-plugin/plugin.json`, root `CHANGELOG.md`, tags `v<version>`) is versioned separately and only bumps for changes outside `plugins/`.
 - The `latest` branch is fast-forwarded to the release commit after every release (root or any plugin) by [release.yml](.github/workflows/release.yml). Users pin `#latest` to get released code only. Never commit to `latest` directly.
 - New plugin: add a package entry in `release-please-config.json`, a `"version"` in its `plugin.json`, and a matching entry in `.release-please-manifest.json`.
+  - release-please treats the manifest version as already released, so the first release of a new plugin is not 1.0.0: a `feat` releases 1.1.0, a breaking change 2.0.0. This is accepted; do not pin it with `release-as`.
+  - The same applies when a plugin is renamed (new package path and component).
 - Version bumps:
   - Major: breaking change (`!` or `BREAKING CHANGE:` footer).
   - Minor: `feat`.

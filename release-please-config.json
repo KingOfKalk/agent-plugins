@@ -1,20 +1,73 @@
 {
   "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
+  "release-type": "simple",
+  "bootstrap-sha": "3c4e6d1a3eab89b7d8b5311aa1aaf01ccf09ac56",
+  "changelog-sections": [
+    { "type": "feat", "section": "Features" },
+    { "type": "fix", "section": "Bug Fixes" },
+    { "type": "refactor", "section": "Refactoring" },
+    { "type": "docs", "section": "Documentation" }
+  ],
   "packages": {
     ".": {
-      "release-type": "simple",
+      "include-component-in-tag": false,
+      "exclude-paths": ["plugins"],
       "extra-files": [
         {
           "type": "json",
           "path": ".claude-plugin/plugin.json",
           "jsonpath": "$.version"
         }
-      ],
-      "changelog-sections": [
-        { "type": "feat", "section": "Features" },
-        { "type": "fix", "section": "Bug Fixes" },
-        { "type": "refactor", "section": "Refactoring" },
-        { "type": "docs", "section": "Documentation" }
+      ]
+    },
+    "plugins/docker": {
+      "component": "docker",
+      "extra-files": [
+        {
+          "type": "json",
+          "path": ".claude-plugin/plugin.json",
+          "jsonpath": "$.version"
+        }
+      ]
+    },
+    "plugins/git": {
+      "component": "git",
+      "extra-files": [
+        {
+          "type": "json",
+          "path": ".claude-plugin/plugin.json",
+          "jsonpath": "$.version"
+        }
+      ]
+    },
+    "plugins/obsidian": {
+      "component": "obsidian",
+      "extra-files": [
+        {
+          "type": "json",
+          "path": ".claude-plugin/plugin.json",
+          "jsonpath": "$.version"
+        }
+      ]
+    },
+    "plugins/presentation-drafter": {
+      "component": "presentation-drafter",
+      "extra-files": [
+        {
+          "type": "json",
+          "path": ".claude-plugin/plugin.json",
+          "jsonpath": "$.version"
+        }
+      ]
+    },
+    "plugins/statusline": {
+      "component": "statusline",
+      "extra-files": [
+        {
+          "type": "json",
+          "path": ".claude-plugin/plugin.json",
+          "jsonpath": "$.version"
+        }
       ]
     }
   }

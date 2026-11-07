@@ -1,5 +1,5 @@
 ---
-name: container
+name: docker-container
 description: Manage Docker containers. Detects devcontainer environment and protects it from destructive actions.
 argument-hint: "<action> [target], e.g. 'ps', 'logs myapp 100', 'exec myapp sh', 'stop myapp'"
 disable-model-invocation: true
@@ -83,17 +83,17 @@ Run the command from the action table.
 ## Examples
 
 ```
-/docker:container ps
-/docker:container ps --all
-/docker:container logs myapp 100
-/docker:container exec myapp sh
-/docker:container stop myapp
-/docker:container start myapp
-/docker:container rm old-container
-/docker:container images
-/docker:container pull nginx:latest
-/docker:container build ./app
-/docker:container inspect myapp
-/docker:container stats
-/docker:container prune
+/docker:docker-container ps
+/docker:docker-container ps --all
+/docker:docker-container logs myapp 100
+/docker:docker-container exec myapp sh
+/docker:docker-container stop myapp
+/docker:docker-container start myapp
+/docker:docker-container rm old-container
+/docker:docker-container images
+/docker:docker-container pull nginx:latest
+/docker:docker-container build ./app
+/docker:docker-container inspect myapp
+/docker:docker-container stats
+/docker:docker-container prune
 ```

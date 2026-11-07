@@ -1,3 +1,13 @@
+---
+# Handoff to presentation-designer. Keep these fields filled.
+title: ""
+audience: ""        # who, prior knowledge, skeptical or receptive
+mode: talk          # talk | read | both
+goal: ""            # what the audience should do / know / feel afterwards
+duration: ""        # e.g. 20 min
+winston: true       # apply Winston's story rules (true | false)
+---
+
 # [Name of Presentation / Pitch / Update]
 
 ## General Information
@@ -19,7 +29,7 @@
 
 ---
 
-## Empowerment Promise
+## Empowerment Promise (only if `winston: true`)
 
 > _"By the end of this session, you will know / be able to [X] that you don't know / can't do now."_
 
@@ -94,7 +104,7 @@ _What do we do about it? Specific: what, how, who, when._
 - **Content:**
 - **Slide notes:**
 
-### Closing Slide: Contributions
+### Closing Slide: Contributions (if `winston: false`: a normal summary / call to action slide)
 
 - **Key message:** [What YOU accomplished / recommend — stays up during Q&A]
 - **Content:** [List of 3–5 concrete contributions or recommendations]
@@ -102,7 +112,7 @@ _What do we do about it? Specific: what, how, who, when._
 
 ---
 
-## Winston Star Check (for important talks)
+## Winston Star Check (only if `winston: true`)
 
 - [ ] **Symbol** — Is there a visual icon people associate with this?
 - [ ] **Slogan** — Can someone describe my idea in one phrase?
@@ -114,12 +124,12 @@ _What do we do about it? Specific: what, how, who, when._
 
 ## Quality Checks
 
-- [ ] Empowerment promise in first 2 minutes?
-- [ ] Each key idea appears ~3× (cycling)?
-- [ ] Slides are mostly images, ≥40pt text, zero bullets?
+- [ ] Empowerment promise in first 2 minutes? (`winston: true`)
+- [ ] Each key idea appears ~3× (cycling)? (`winston: true`)
+- [ ] Each slide's content says what to show, not how it looks (no sizes, colors, layout)?
 - [ ] Key messages alone tell the full story (horizontal logic)?
 - [ ] Each slide's body proves its key message (vertical logic)?
-- [ ] Final slide = Contributions (not "Questions?" or "Thank you")?
+- [ ] Final slide = Contributions (not "Questions?" or "Thank you")? (`winston: true`)
 - [ ] Practiced with someone unfamiliar with the topic?
 - [ ] Room is well-lit, right-sized?
 

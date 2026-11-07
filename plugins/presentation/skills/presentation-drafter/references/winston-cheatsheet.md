@@ -36,13 +36,11 @@
 
 ### Slide Rules
 
+Visual slide rules (font size, bullets, text density) are applied by `presentation-designer` in mode `talk`. For the draft, keep only the delivery side:
+
 - No reading slides aloud
-- No bullet points
-- No logos, backgrounds, slide titles (say the title)
-- Font ≥ 40pt
 - No laser pointers — use embedded numbered arrows
 - Stand near the screen
-- Print test: mostly images + white space
 - One complex slide max per talk (hapax legomenon)
 - **Every word on your slide competes with and defeats every word from your mouth.**
 

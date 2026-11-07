@@ -1,3 +1,13 @@
+---
+# Handoff to presentation-designer. Keep these fields filled.
+title: ""
+audience: ""        # who, prior knowledge, skeptical or receptive
+mode: talk          # talk | read | both
+goal: ""            # what the audience should do / know / feel afterwards
+duration: ""        # e.g. 20 min
+winston: true       # apply Winston's story rules (true | false)
+---
+
 # [Name of Workshop / Brownbag / Teaching Session]
 
 ## General Information
@@ -20,7 +30,7 @@
 
 ---
 
-## Empowerment Promise
+## Empowerment Promise (only if `winston: true`)
 
 > _"By the end of this session, you will know / be able to [X] that you don't know / can't do now."_
 
@@ -68,7 +78,7 @@
 
 [What must the audience understand after this block? One sentence.]
 
-#### Fence
+#### Fence (only if `winston: true`)
 
 - **It IS:** [what this concept is]
 - **It is NOT:** [common misconception or similar-but-different thing]
@@ -77,7 +87,7 @@
 
 - [Content, visuals, demos — what you show]
 
-#### Cycling plan
+#### Cycling plan (only if `winston: true`)
 
 How do you cover this concept 3× from different angles?
 
@@ -103,14 +113,14 @@ How do you cover this concept 3× from different angles?
 
 [One sentence.]
 
-#### Fence
+#### Fence (only if `winston: true`)
 
 - **It IS:**
 - **It is NOT:**
 
 #### Content / Slides
 
-#### Cycling plan
+#### Cycling plan (only if `winston: true`)
 
 1.
 2.
@@ -132,14 +142,14 @@ _(Copy this block structure for additional topics.)_
 
 #### Key concept
 
-#### Fence
+#### Fence (only if `winston: true`)
 
 - **It IS:**
 - **It is NOT:**
 
 #### Content / Slides
 
-#### Cycling plan
+#### Cycling plan (only if `winston: true`)
 
 1.
 2.
@@ -173,7 +183,7 @@ Pick one: **Call to action** | **Salute the audience** | **Joke**
 
 ---
 
-## Winston Star Check (for important sessions)
+## Winston Star Check (only if `winston: true`)
 
 - [ ] **Symbol** — Is there a visual icon for this concept?
 - [ ] **Slogan** — Can they describe what they learned in one phrase?

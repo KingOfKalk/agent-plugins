@@ -1,52 +1,80 @@
 ---
 name: presentation-designer
-description: Design and build slide decks, single slides and one-pagers with a grid-first visual system (8px grid, 3 type sizes, 3 palettes, numbered slide types and components) and a pre-flight checklist. Use when creating, building or reviewing the visual layout of slides, PPTX or HTML decks. For outlines or storyline, use presentation-drafter instead.
+description: Design slide decks, single slides and one-pagers with a grid-first visual system (8px grid, 3 type sizes, modes talk / read, 3 palettes, numbered slide types and components). Turns a presentation-drafter draft or a quick idea into spec.md, the handoff for presentation-builder. Use when the user wants slides, a one-slider or a deck designed, laid out or reviewed. For storyline use presentation-drafter; to render HTML / PDF / PPTX use presentation-builder.
 ---
 
 # Presentation designer
 
-A calm, grid-first visual system for 16:9 decks and one-pagers. This file holds the workflow and the core rules; the details live in `references/`. If the user provides brand tokens or a design-system file, use them; where they differ from this guide, they win.
+A calm, grid-first visual system for 16:9 decks and one-pagers. The designer owns **the look**: mode, sizes, palette, slide types, layout per slide. It does not write the storyline (`presentation-drafter`) and does not render files (`presentation-builder`). Its output is always `spec-[topic].md`.
+
+If the user provides brand tokens or a design-system file, use them; where they differ from this guide, they win.
 
 ## Reference files
 
 Every slide type and component has a DS ID: `DS <group>.<n>`, variants add a letter (`DS 4.1`, `DS 9.3-d`), defined in `references/components.md`.
 
-Read the ones the task needs before building:
-
 | File | Read when |
 |---|---|
-| `references/tokens.md` | Always: grid values, spacing, type, the three palettes, chart colors, shape |
-| `references/components.md` | Planning slides: every slide type and component with its DS ID and limits |
+| `references/tokens.md` | Always: grid, spacing, type sizes per mode, modes, palettes, chart colors, shape |
+| `references/components.md` | Planning slides: every slide type and component with its DS ID, limits and mode limits |
 | `references/examples.md` | Writing content: purpose plus good and bad examples per component |
-| `references/implementation.md` | Building: tables, steps, code lines, page numbers, tool quirks |
+| `references/spec-format.md` | Writing the spec: frontmatter and per-slide fields |
 | `references/sources.md` | Using icons or checking contrast rules: licenses and standards |
 
-## Workflow
+## Two ways in
 
-1. **Plan first.** Outline (one sentence per section), slide list with the DS ID per slide, length, audience. Any rule you want to break: name it as an exception and ask before building. Exceptions are allowed, but discussed during planning.
-2. **Build** in the requested format (slide artifact, PPTX, HTML), applying `references/tokens.md` directly.
-3. **Content:** never invent numbers, quotes or names. Use bracketed placeholders (`[__]`, `[date]`, `[owner]`) and list them in the reply.
-4. **Speaker notes:** name the DS ID of the layout used.
-5. Run the pre-flight checklist before delivering.
+- **From a draft** (the user drafted first with `presentation-drafter`): read the draft; its frontmatter gives `audience`, `mode`, `goal`, `duration`. Do not ask again for what is there.
+- **Quick** (a concrete idea, e.g. a one-slider, no draft): ask the intake questions below, then go straight through to the builder.
+
+## Step 1: Intake
+
+Only ask what is missing, in one message:
+
+- **Audience:** who, what they already know.
+- **Presentation mode:** presented live (`talk`), read on its own (`read`: one-slider, handout, mail) or both (`both`)?
+- **Goal:** what should the audience do, know or feel afterwards?
+- **Size:** number of slides or duration.
+
+If the user says "make it Winston" (or similar), the mode is `talk`; do not ask for it. One-pagers default to `read`; say so instead of asking.
+
+## Step 2: Plan
+
+- Slide list: one line per slide with the DS ID and the subheadline.
+- Apply the mode limits from `components.md`.
+- Any rule you want to break: name it as an exception and ask before writing the spec. Exceptions are allowed, but agreed here.
+- From a draft: show the plan and wait for an OK. Quick: no approval round unless there is an exception.
+
+## Step 3: Write the spec
+
+- Write `spec-[topic].md` following `references/spec-format.md`, next to the draft or in the working directory (Claude.ai: `/mnt/user-data/outputs/`).
+- Always a file, also for a single slide: the builder renders from it, and it can be rebuilt in another format later.
+- Content: never invent numbers, quotes or names. Use bracketed placeholders (`[__]`, `[date]`, `[owner]`) and list them in the frontmatter and in the reply.
+
+## Step 4: Design check, then hand off
+
+Run the design checklist below. Then:
+
+- Quick: hand over to `presentation-builder` right away (default: one shareable HTML file).
+- From a draft: offer the build; ask which format if the user has not said.
 
 ## Core rules
 
-- Canvas 1920 x 1080; base unit 8px; margins 72 (top, left, right) and 120 (bottom, footer band); 12 columns of 104px, gutters 48px. Nothing off the grid, nothing past the margins.
-- 2 families (sans for text, mono for code), 3 sizes (24 / 32 / 96), weights 400 and 700, no italic.
-- Every content slide: headline (large, bold, 1 line) + subheadline (one full sentence with the takeaway).
+- Canvas 1920 x 1080; base unit 8px; margins 72 (top, left, right) and 120 (bottom, footer band); 12 columns of 104px, gutters 48px.
+- 2 families (sans for text, mono for code), 3 sizes per deck (`read` 24 / 32 / 96, `talk` 32 / 48 / 96), weights 400 and 700, no italic.
+- Every content slide: headline (large, bold, 1 line) + subheadline (one full sentence with the takeaway; from a draft, the key message).
 - Light palette by default; dark and mono (print) on request.
 - One accent focus per slide; status colors (success, warning, error) only for status and always with a word.
 - Boxes: surface fill, 2px border, 4px radius (0 in mono). Flat: no shadows, no gradients.
 
-## Pre-flight checklist
+## Design checklist
 
-- [ ] Every slide maps to a DS ID; exceptions were agreed in planning
-- [ ] Grid: margins 72 / 120, 12 columns, positions, sizes and gaps multiples of 8 (strokes 2 / 4 and radius 4 excepted), nothing past the margins
-- [ ] Only 2 families and the 3 sizes (24 / 32 / 96), weights 400 / 700, no italic
-- [ ] Headlines 1 line; subheadline is one full takeaway sentence
-- [ ] One accent focus per slide; status colors only with labels
-- [ ] Boxes: surface + 2px border + 4px radius; no shadows, no gradients
-- [ ] Lists max 5 items, max 4 blocks, max 3 rows, tables within limits
-- [ ] Footer: deck title + "n / total" (none on title slide; A1 in appendix)
+The rendering checks (pixels, overflow, fonts, page numbers) are done by `presentation-builder`.
+
+- [ ] Mode set; sizes and mode limits match it
+- [ ] Every slide maps to a DS ID; exceptions were agreed and listed in the spec
+- [ ] Spans per row add up to 12; block limits respected
+- [ ] Headlines fit 1 line (about 20-24 characters); subheadline is one full takeaway sentence
+- [ ] One accent focus per slide, named in `accent`; status colors only with labels
+- [ ] Lists, blocks, rows, tables and code within limits for the mode
 - [ ] Sources for numbers as SourceNote; placeholders bracketed and listed
-- [ ] Code framed, mono, max 15 lines
+- [ ] Spec complete: every field the builder needs is there, no open design decisions

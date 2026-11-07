@@ -5,8 +5,8 @@
 - Canvas 1920 x 1080, fixed, scaled as a whole. Base unit u = 8px; every position, size and gap is a multiple of 8. Only exceptions: stroke widths (2, 4) and radius (4).
 - Margins: top / left / right 72px (9u), bottom 120px (15u) = footer band (32 footer line, 48 to edge; the remaining 40 above the footer line is derived, not a spacing value). Content area 1776 x 888.
 - 12 columns of 104px (13u), gutters 48px (6u). Splits evenly into 1, 2, 3, 4, 6.
-- Header: headline 104px line, 16px gap, subheadline 48px line, 48px gap; body from y 288 to 960 (672px).
-- Footer line at y 1000, small, muted: deck title left, page number "7 / 18" right.
+- Header (`read`): headline 104px line, 16px gap, subheadline 48px line, 48px gap; body from y 288 to 960 (672px). `talk`: see Modes.
+- Footer line (`read`) at y 1000, small, muted: deck title left, page number "7 / 18" right. `talk`: see Modes.
 - Spacer column allowed between columns: e.g. 5 | empty | 6.
 - Keep about 10% spare width: system fonts differ per OS.
 
@@ -30,13 +30,35 @@ Only these values: 8, 16, 24, 32, 48, 72, 120.
 - Mono (code only): `ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace`
 - If a tool does not accept these stacks, use the generic `sans-serif` / `monospace`.
 
-| Size | px / line height | Use |
-|---|---|---|
-| large | 96 / 104 | headline, big numbers, chapter numbers |
-| normal | 32 / 48 | subheadline (muted), body, lists, card titles (bold) |
-| small | 24 / 32 | footer, card text, table cells, captions, code |
+Three sizes per deck; the set depends on the mode (see Modes below).
+
+| Size | `read` px / line height | `talk` px / line height | Use |
+|---|---|---|---|
+| large | 96 / 104 | 96 / 104 | headline, big numbers, chapter numbers |
+| normal | 32 / 48 | 48 / 56 | subheadline (muted), body, lists, card titles (bold) |
+| small | 24 / 32 | 32 / 40 | footer, card text, table cells, captions, code |
 
 Weights 400 and 700 only; no italic. Headline max 1 line (about 20-24 characters); title slide may use 2.
+
+## Modes
+
+The mode comes from the draft frontmatter (`mode`) or the intake question "presented or read?". One mode per deck.
+
+| Mode | When | Sizes | Text |
+|---|---|---|---|
+| `read` | one-slider, handout, mail attachment, pre-read | read column | slides must stand alone; lists, tables, running text allowed within component limits |
+| `talk` | presented live (Winston's slide rules) | talk column | the speaker carries the content; slides are mostly visuals and white space |
+| `both` | presented, then shared | talk column | build as `talk`; reading detail goes into speaker notes and appendix pages (DS 2.12) |
+
+`talk` rules (from Winston's "How to Speak"):
+
+- No bullet lists (DS 5.1 bullets and checklists); use BigNumber, Cards, Tiles, a chart, an image or one sentence instead. Numbered steps (DS 9.3) are allowed.
+- Body text max ~20 words per slide besides headline and subheadline.
+- Mostly images and white space; one complex slide per talk at most, named as an exception.
+- No logos except on the title slide; no decorative backgrounds.
+- Headline and subheadline stay (Winston would drop slide titles; this system keeps them because decks get shared).
+
+`talk` header geometry: headline 104 line, 16 gap, subheadline 56 line, 48 gap; body from y 296 to 960 (664px). Footer line at y 992 (40 line, 48 to edge).
 
 ## Palettes
 

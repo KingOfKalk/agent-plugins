@@ -1,5 +1,5 @@
 {
   "name": "presentation",
   "version": "1.0.0",
-  "description": "Draft presentation outlines (SCR, Winston's How to Speak) and design slide decks with a grid-first visual system."
+  "description": "Presentations in three steps: drafter (storyline, SCR, Winston), designer (grid-first visual system, talk / read modes, spec) and builder (shareable HTML, PDF, PPTX)."
 }

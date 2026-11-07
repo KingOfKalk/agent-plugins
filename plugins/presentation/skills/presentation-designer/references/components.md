@@ -1,6 +1,6 @@
 # Components
 
-Reference components as `DS <group>.<n>`; variants add a letter (`DS 9.3-d`).
+Reference components as `DS <group>.<n>`; variants add a letter (`DS 9.3-d`). Terms: every slide has a headline and a subheadline; "title" and "subtitle" only on the title slide (DS 2.1). A large deck has 15+ main slides or 3+ chapters.
 
 ## Mode limits
 
@@ -22,23 +22,24 @@ The limits below are for `read`. In `talk` and `both` (see tokens.md, Modes) the
 ## 1 Foundations
 
 - **1.1 Grid** - see tokens.md
-- **1.2 Footer** - deck title left, "n / total" right; none on the title slide; appendix "| Appendix" and A1, A2
+- **1.2 Footer** - deck title left, "n / total" right; title slide: metadata line left, no page number; closing slides (2.6-2.8, 2.15): contact left, page number right; one-pagers: date + sources, no page number; appendix "| Appendix" and A1, A2
 - Contrast: text >= 4.5:1 on bg and surface (WCAG 2.2, 1.4.3); status never by color alone (1.4.1)
 
 ## 2 Slide types
 
 - **2.1 TitleSlide** - title block vertically centered, left aligned; title 1 line (2 allowed); optional subtitle; metadata as one line in the footer band (name, date, version, status as neutral tag, event, client; " | " separated); up to 3 logos top right, 64px high, up to 256px wide, 48px apart; no page number
-- **2.2 Agenda** - 5 | empty | 6, no divider, each column vertically centered; left: "Agenda", subtitle, optional intro; right: numbered list "1", "2.1" (never "02"), max 2 levels, chapters bold, subchapters muted, ~12 lines max
-- **2.3 AgendaProgress** - before each chapter in large decks; subtitle "Next: ..."; current chapter accent bold, finished muted with subchapters hidden, upcoming text color
+- **2.2 Agenda** - 5 | empty | 6, no divider, each column vertically centered; left: "Agenda", subheadline, optional intro; right: numbered list "1", "2.1" (never "02"), max 2 levels, chapters bold, subchapters muted, max 12 lines
+- **2.3 AgendaProgress** - before each chapter in large decks only; subheadline "Next: ..."; current chapter accent bold, finished muted with subchapters hidden, upcoming text color
 - **2.4 Chapter** - number (large, accent), short divider (2 columns, 2px), title; block centered left; only with 2+ chapters
-- **2.5 Subchapter** - small muted breadcrumb ("2 Pipeline"), number "2.2", divider, title, optional one-sentence subtitle
+- **2.5 Subchapter** - small muted breadcrumb ("2 Pipeline"), number "2.2", divider, headline, optional one-sentence subheadline
 - **2.6 Closing** (default) - one takeaway, centered left; contact in the footer band
-- **2.7 ClosingNextSteps** - headline, subtitle, numbered steps with owner and date, action word bold, max 5, whole block vertically centered
+- **2.7 ClosingNextSteps** - headline, subheadline, numbered steps with owner and date, action word bold, max 5, whole block vertically centered
 - **2.8 ClosingQuestions** - "Questions?" centered left; not used with `winston: true`
-- **2.9 AppendixContents** - divider block left ("A", divider, "Appendix", subtitle), numbered list of appendix pages right; agenda layout
+- **2.9 AppendixContents** - divider block left ("A", divider, "Appendix", subheadline), numbered list of appendix pages right; agenda layout
 - **2.10 AppendixSingle** - same block left, the appendix content itself right (sources, glossary)
 - **2.11 AppendixDivider** - plain "A" divider like a chapter slide
 - **2.12 AppendixSlide** - any layout; pages A1, A2 ..., not counted in the main total
+- **Appendix entry** - 1 appendix page: 2.10 AppendixSingle; 2-5 pages: 2.9 AppendixContents, then the pages; more than 5: 2.11 AppendixDivider, then the pages. Pages are numbered A1, A2 ... in every case.
 - **2.13 OnePagerA / 2.14 OnePagerB** - two example one-pagers: A) content 8 | key numbers 4, B) why / what / next + one table; any other one-pager has no fixed layout and is composed freely; body may use small; footer date + sources, no page number
 - **2.15 ClosingContributions** - Winston's last slide: headline + subheadline, numbered list of 3-5 contributions (what was achieved or recommended, one line each), body vertically centered (`align: center`); stays up during Q&A; contact in the footer band
 - **Last slide** - `winston: true`: 2.15 ClosingContributions, or 2.7 ClosingNextSteps for decks that ask for a decision; never 2.8. `winston: false`: 2.6 by default, 2.7 or 2.8 as needed. The appendix follows after the last slide either way.
@@ -62,7 +63,7 @@ The limits below are for `read`. In `talk` and `both` (see tokens.md, Modes) the
 
 - **5.1 Lists** - bullets, numbered, checklist, key-value; max 5 items, 2 levels
 - **5.2 Quote** - normal size, regular (not italic), quotation marks, small muted attribution, max 2 lines
-- **5.3 SourceNote** - "Source: <who>, <when>", small, muted, above the footer band
+- **5.3 SourceNote** - "Source: <who>, <when>", small, muted, one line; y 928-960 (`talk`: 920-960); body content ends 16px above it (912 / 904)
 - **5.4 InlineHighlight** - one word or number in accent bold inside running text; the only emphasis in running text, counts as the slide's accent focus
 - **5.5 Link** - text color, regular weight; a) the URL itself as text (`github.com/KingOfKalk/agent-plugins`): no underline; b) other link text ("Repo on GitHub"): underline (2px, 4px offset); `talk`: no links in the body, one short URL (a) on the closing slide at most
 
@@ -71,7 +72,7 @@ The limits below are for `read`. In `talk` and `both` (see tokens.md, Modes) the
 - **6.1 AccentBox** - card with 4px accent border, max one per slide
 - **6.2 BigNumber** - large; a) + label, b) + comparison, c) further numbers in text color
 - **6.3 Divider** - 2px border color; a) full width, b) short, c) vertical in the gutter
-- **6.4 Status** - rows with Pass (2px solid), Risk (2px dashed), Fail (4px; mono: hatch), always with the word
+- **6.4 Status** - rows with Pass, Risk, Fail; strokes and mono rules in tokens.md (Status); always with the word
 - **6.5 StatusTag** - inline status label
 - **6.6 NeutralTag** - Draft, New, Beta, Optional; border color, never a status color
 
@@ -86,7 +87,7 @@ The limits below are for `read`. In `talk` and `both` (see tokens.md, Modes) the
 - **8.1 ChartBar**, **8.2 ChartLine**, **8.3 ChartRanking** (sorted horizontal bars) - focus + context: one accent, rest context gray
 - **8.4 ChartSeries** - up to 4 equal series in the chart palette, direct labels
 - **8.5 ChartDonut** - max 3 slices, focus slice accent, value large in the middle
-- Grid lines separator, baseline border, chart text small; bars 4px radius on the data end only; lines 4px focus, 2px context; never two y-axes, 3D or rainbow; static, no hover
+- Grid lines separator, baseline border, chart text small; direct labels on all marks (tokens.md, Chart colors); bars 4px radius on the data end only; lines 4px focus, 2px context; never two y-axes, 3D or rainbow; static, no hover
 
 ## 9 Gauges and progress
 
@@ -102,6 +103,6 @@ The limits below are for `read`. In `talk` and `both` (see tokens.md, Modes) the
 ## 11 Media
 
 - **11.1 ImageText** - image cropped to 4, 6 or 8 columns next to text, caption below
-- **11.2 Screenshot** - white, 2px border, numbered 48px accent callouts explained beside it, max ~4
+- **11.2 Screenshot** - on `bg`, 2px border, numbered 48px accent callouts explained beside it, max ~4
 - **11.3 ImageLarge** - 12 columns, caption below; never full-bleed
 - **11.4 Icons** - Phosphor Icons (MIT), Regular and Fill only; 48px next to text, 96px standalone; text color, accent only as focus; always with a text label; when sharing the icon files themselves (a template, a repo), keep Phosphor's LICENSE next to them

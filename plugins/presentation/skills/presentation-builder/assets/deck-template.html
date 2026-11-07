@@ -9,14 +9,14 @@
 :root {
   --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --mono: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
-  --bg: #FAFAF7; --surface: #EEEEEA; --text: #111111; --muted: #555555;
+  --bg: #FFFFFF; --surface: #EEEEEA; --text: #111111; --muted: #555555;
   --border: #B0B0A8; --separator: #E2E2DC; --accent: #0A55B5;
   --success: #1E7A3A; --warning: #8A5300; --error: #C0262D;
   --radius: 4px;
   /* read mode sizes */
   --fs-l: 96px; --lh-l: 104px; --fs-n: 32px; --lh-n: 48px; --fs-s: 24px; --lh-s: 32px;
   --footer-y: 1000px;
-  --body-h: 672px; --row-h-2: 312px; --row-h-3: 192px;
+  --body-h: 672px; --row-h-2: 312px; --row-h-3: 192px; --source-h: 48px;
 }
 body[data-palette="dark"] {
   --bg: #141414; --surface: #222222; --text: #F2F2F2; --muted: #A3A3A3;
@@ -31,7 +31,7 @@ body[data-palette="mono"] {
 body[data-mode="talk"], body[data-mode="both"] {
   --fs-n: 48px; --lh-n: 56px; --fs-s: 32px; --lh-s: 40px;
   --footer-y: 992px;
-  --body-h: 664px; --row-h-2: 304px; --row-h-3: 184px;
+  --body-h: 664px; --row-h-2: 304px; --row-h-3: 184px; --source-h: 56px;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -54,6 +54,10 @@ body { background: #000; font-family: var(--sans); color: var(--text); overflow:
 /* Vertical alignment of the body (spec field "align"): add .center to .body */
 .body.center { height: var(--body-h); display: flex; flex-direction: column; justify-content: center; }
 .body.grid.center { display: grid; align-content: center; }
+/* SourceNote (DS 5.3): add .has-source to the slide; the body ends 16px above the note */
+.has-source .body.center { height: calc(var(--body-h) - var(--source-h)); }
+/* Hatch for mono status strips and mono chart context (tokens.md) */
+.hatch { background-image: repeating-linear-gradient(45deg, var(--text) 0 4px, transparent 4px 16px); }
 
 /* 12-column grid: 104px columns, 48px gutters */
 .grid { display: grid; grid-template-columns: repeat(12, 104px); column-gap: 48px; row-gap: 48px; }
@@ -153,7 +157,7 @@ body.show-notes #notes-panel { display: block; }
 </section>
 
 <!-- DS 3.6 SplitUneven example -->
-<section class="slide">
+<section class="slide has-source">
   <div class="headline">[Headline]</div>
   <div class="subheadline">[Subheadline: one full takeaway sentence.]</div>
   <div class="body grid center">
@@ -222,7 +226,10 @@ body.show-notes #notes-panel { display: block; }
         var name = el.tagName.toLowerCase() + (el.className ? '.' + String(el.className).split(' ').join('.') : '');
         var left = (b.left - r.left) / scale, top = (b.top - r.top) / scale;
         var right = (b.right - r.left) / scale, bottom = (b.bottom - r.top) / scale;
-        if (left < 71 || top < 71 || right > 1849 || bottom > 961) problems.push('slide ' + (k + 1) + ': ' + name + ' outside safe area');
+        var limit = 961;
+        var src = s.querySelector('.source');
+        if (src && !el.closest('.source')) limit = (src.getBoundingClientRect().top - r.top) / scale - 15;
+        if (left < 71 || top < 71 || right > 1849 || bottom > limit) problems.push('slide ' + (k + 1) + ': ' + name + ' outside safe area');
         if (el.scrollWidth > el.clientWidth + 1 || el.scrollHeight > el.clientHeight + 8) problems.push('slide ' + (k + 1) + ': ' + name + ' overflows its box');
       });
     });

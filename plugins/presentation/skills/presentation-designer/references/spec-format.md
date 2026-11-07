@@ -51,7 +51,7 @@ One `##` section per slide, numbered as shown in the footer (`A1`, `A2` for appe
 | Field | Required | Content |
 |---|---|---|
 | heading | yes | number, DS ID of the slide type or layout, column split if any |
-| headline | content slides | 1 line, about 20-24 characters |
+| headline | content slides | 1 line, about 28 characters at most |
 | subheadline | content slides | one full sentence, the takeaway (the draft's key message) |
 | accent | yes | the one focus of the slide; `none` if there is none |
 | align | optional | vertical alignment of the body: `top` or `center`; default `center` in `talk` / `both`, `top` in `read` |

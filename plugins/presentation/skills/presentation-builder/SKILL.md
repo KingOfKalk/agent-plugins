@@ -36,7 +36,8 @@ Check what is installed before promising a format (`which google-chrome chromium
 2. **Build.**
    - HTML: copy `assets/deck-template.html`, set `<title>` to the deck title, `data-mode` and `data-palette` on `<body>`, replace the example slides with one `<section class="slide">` per spec slide. Title slide gets `data-title-slide`, appendix slides `data-appendix`; the script fills footer titles and page numbers.
    - Use only the template's classes and the token variables. No new font sizes, colors, shadows or gradients.
-   - Template classes: `.grid` + `.span-N`, `.card` / `.accent-box`, `.rows.rows-2|3` + `.row` (`.focus`), `.split` (`.split-4-8`, `.split-8-4`), `.closing`, `pre.code`, `.list`, `.label`, `.source`, links via `<a>` (`.url` when the text is the URL). A component without a class: add CSS from tokens only and report it as a template gap.
+   - Template classes: `.grid` + `.span-N`, `.card` / `.accent-box`, `.rows.rows-2|3` + `.row` (`.focus`), `.split` (`.split-4-8`, `.split-8-4`), `.closing`, `.hatch`, `pre.code`, `.list`, `.label`, `.source`, links via `<a>` (`.url` when the text is the URL). A component without a class: add CSS from tokens only and report it as a template gap.
+   - Slides with a SourceNote get `.has-source` on the section; the body then ends 16px above the note.
    - Body alignment from the spec field `align`: add `.center` to `.body` for `center` (default in `talk` / `both`), nothing for `top`.
    - Speaker notes from `notes` go into `<aside class="notes">` (press N in the deck to show them).
 3. **Check the layout** (HTML and PDF):

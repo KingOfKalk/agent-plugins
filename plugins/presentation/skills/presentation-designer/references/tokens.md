@@ -38,7 +38,7 @@ Three sizes per deck; the set depends on the mode (see Modes below).
 | normal | 32 / 48 | 48 / 56 | subheadline (muted), body, lists, card titles (bold) |
 | small | 24 / 32 | 32 / 40 | footer, card text, table cells, captions, code |
 
-Weights 400 and 700 only. Headline max 1 line (about 20-24 characters); title slide may use 2.
+Weights 400 and 700 only. Headline max 1 line (about 28 characters at most; the builder's layout check decides); title slide may use 2.
 
 ## Type styles
 
@@ -77,7 +77,7 @@ The mode comes from the draft frontmatter (`mode`) or the intake question "prese
 
 | Role | Light | Dark | Mono |
 |---|---|---|---|
-| bg | #FAFAF7 | #141414 | #FFFFFF |
+| bg | #FFFFFF | #141414 | #FFFFFF |
 | surface | #EEEEEA | #222222 | #FFFFFF |
 | text | #111111 | #F2F2F2 | #000000 |
 | muted | #555555 | #A3A3A3 | #4D4D4D |
@@ -86,11 +86,24 @@ The mode comes from the draft frontmatter (`mode`) or the intake question "prese
 | accent | #0A55B5 | #6CA8FF | #000000 (bold, 4px border) |
 | success | #1E7A3A | #5CC98A | label + 2px solid |
 | warning | #8A5300 | #F2B33D | label + 2px dashed |
-| error | #C0262D | #FF7A7A | label + hatch fill |
+| error | #C0262D | #FF7A7A | label + 4px + hatched strip |
 
 - All text colors >= 4.5:1 on bg and surface.
 - Surface is ~1.1:1 against bg, so boxes always carry the 2px border.
-- Mono: pure white background; no fills that print as a tint.
+- Light and mono use pure white as background (an off-white tint renders unevenly on office monitors).
+- Mono: no fills that print as a tint.
+
+## Status
+
+| Status | Color role | Stroke | Mono |
+|---|---|---|---|
+| Pass | success | 2px solid | 2px solid |
+| Risk | warning | 2px dashed | 2px dashed |
+| Fail | error | 4px solid | 4px solid + 24px hatched strip at the left edge (45 degrees, 4px lines every 16px) |
+
+- Always with the word (Pass, Risk, Fail); never color or stroke alone.
+- The hatch never covers text.
+- The 4px accent border is never a status.
 
 ## Accent rule
 
@@ -102,15 +115,17 @@ The mode comes from the draft frontmatter (`mode`) or the intake question "prese
 
 Fixed order, never cycled; validated for color blindness.
 
-| Slot | Light | Dark |
-|---|---|---|
-| series-1 blue | #0A55B5 | #3987e5 |
-| series-2 orange | #eb6834 | #d95926 |
-| series-3 aqua | #1baf7a | #199e70 |
-| series-4 violet | #6250d6 | #9085e9 |
-| context gray | #B0B0A8 | #555555 |
+| Slot | Light | Dark | Mono |
+|---|---|---|---|
+| series-1 blue (= accent) | #0A55B5 | #6CA8FF | #000000 |
+| series-2 orange | #EB6834 | #D95926 | gray step + line pattern |
+| series-3 aqua | #1BAF7A | #199E70 | gray step + line pattern |
+| series-4 violet | #6250D6 | #9085E9 | gray step + line pattern |
+| context gray | #B0B0A8 | #555555 | #BDBDBD + hatch (45 degrees, 4px lines every 16px) |
 
-Max 4 series, always direct labels (aqua is only 2.7:1 on light bg). Mono: gray steps plus line patterns. Status colors are never series colors.
+- Max 4 series; status colors are never series colors.
+- Direct labels on every bar, point and series, not only on the focus: context gray (about 2.2:1 on light bg, 2.5:1 on dark) and aqua (2.7:1) are below the 3:1 for graphics (WCAG 1.4.11), so the labels carry the information.
+- Label colors: values in text color, axis and category labels muted; never in a series color.
 
 ## Shape
 

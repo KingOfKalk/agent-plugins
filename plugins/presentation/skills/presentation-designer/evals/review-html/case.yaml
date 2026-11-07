@@ -1,0 +1,8 @@
+schema_version: "1.1"
+name: review-html
+expected_outcome: |
+  presentation-designer follows its review workflow on an HTML deck: it maps every slide to a DS ID,
+  runs the design checklist and the builder's layout check, and reports violations per slide with a fix,
+  without changing the file. The deck has planted violations on slides 2 to 6.
+context:
+  scaffold_script: place-files.sh

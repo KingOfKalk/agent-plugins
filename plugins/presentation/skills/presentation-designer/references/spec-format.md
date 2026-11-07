@@ -16,6 +16,7 @@ palette: light                    # light | dark | mono
 source: draft-release-pipeline.md # optional: the draft this spec was made from
 audience: "Engineering leads"     # copied from the draft or the intake
 goal: "Approve the pilot"         # copied from the draft or the intake
+winston: true                     # from the draft, or true when the user asked for Winston; decides the last slide
 total: 9                          # main slides, appendix excluded
 exceptions:                       # rule breaks agreed during planning, empty if none
   - "Slide 6: one complex slide (architecture overview)"

@@ -120,6 +120,7 @@ Purpose, two good and two bad examples per component, each with the reason.
 
 **Bad**
 - "Questions?" as the only closing in a decision deck - use NextSteps.
+- "Questions?" as the last slide with `winston: true` - use ClosingContributions; it stays up during Q&A.
 - Adding a big icon or illustration - keep it plain.
 
 ## DS 2.9 AppendixContents
@@ -193,6 +194,18 @@ Purpose, two good and two bad examples per component, each with the reason.
 **Bad**
 - A full-width table with 10 rows plus columns - too dense.
 - Page number in the footer - one-pagers show date and sources.
+
+## DS 2.15 ClosingContributions
+
+**Purpose:** Winston's last slide: what this talk contributed, visible during the whole Q&A.
+
+**Good**
+- "Contributions" + subheadline, then 3 numbered lines: "Pipeline template for all projects", "Security scans before every merge", "Pilot with two teams in Q1".
+- In `talk`: 3 short lines the speaker can point back to when answering questions.
+
+**Bad**
+- "Thank you" or "Questions?" instead - the slide that stays up longest says nothing.
+- A list of collaborators or links - contributions are results and recommendations, not credits.
 
 ## DS 3.1 ContentSlide
 

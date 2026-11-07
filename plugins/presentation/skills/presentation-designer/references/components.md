@@ -9,6 +9,7 @@ The limits below are for `read`. In `talk` and `both` (see tokens.md, Modes) the
 | Component | `talk` / `both` |
 |---|---|
 | 2.13 / 2.14 OnePager | not used; one-pagers are `read` |
+| 2.15 ClosingContributions | max 3 contributions |
 | 3.1-3.4 running text | max ~20 words of body per slide |
 | 4.1 Cards / 4.2 Tiles | max 3, title + max ~6 words each |
 | 4.3 Rows | max 3, label + max ~6 words |
@@ -32,12 +33,14 @@ The limits below are for `read`. In `talk` and `both` (see tokens.md, Modes) the
 - **2.5 Subchapter** - small muted breadcrumb ("2 Pipeline"), number "2.2", divider, title, optional one-sentence subtitle
 - **2.6 Closing** (default) - one takeaway, centered left; contact in the footer band
 - **2.7 ClosingNextSteps** - headline, subtitle, numbered steps with owner and date, action word bold, max 5, whole block vertically centered
-- **2.8 ClosingQuestions** - "Questions?" centered left
+- **2.8 ClosingQuestions** - "Questions?" centered left; not used with `winston: true`
 - **2.9 AppendixContents** - divider block left ("A", divider, "Appendix", subtitle), numbered list of appendix pages right; agenda layout
 - **2.10 AppendixSingle** - same block left, the appendix content itself right (sources, glossary)
 - **2.11 AppendixDivider** - plain "A" divider like a chapter slide
 - **2.12 AppendixSlide** - any layout; pages A1, A2 ..., not counted in the main total
 - **2.13 OnePagerA / 2.14 OnePagerB** - two example one-pagers: A) content 8 | key numbers 4, B) why / what / next + one table; any other one-pager has no fixed layout and is composed freely; body may use small; footer date + sources, no page number
+- **2.15 ClosingContributions** - Winston's last slide: headline + subheadline, numbered list of 3-5 contributions (what was achieved or recommended, one line each), body vertically centered (`align: center`); stays up during Q&A; contact in the footer band
+- **Last slide** - `winston: true`: 2.15 ClosingContributions, or 2.7 ClosingNextSteps for decks that ask for a decision; never 2.8. `winston: false`: 2.6 by default, 2.7 or 2.8 as needed. The appendix follows after the last slide either way.
 
 ## 3 Layouts
 

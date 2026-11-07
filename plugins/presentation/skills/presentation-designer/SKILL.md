@@ -23,7 +23,7 @@ Every slide type and component has a DS ID: `DS <group>.<n>`, variants add a let
 
 ## Two ways in
 
-- **From a draft** (the user drafted first with `presentation-drafter`): read the draft; its frontmatter gives `audience`, `mode`, `goal`, `duration`. Do not ask again for what is there.
+- **From a draft** (the user drafted first with `presentation-drafter`): read the draft; its frontmatter gives `audience`, `mode`, `goal`, `duration`, `winston`. Do not ask again for what is there.
 - **Quick** (a concrete idea, e.g. a one-slider, no draft): ask the intake questions below, then go straight through to the builder.
 
 ## Step 1: Intake
@@ -35,7 +35,7 @@ Only ask what is missing, in one message:
 - **Goal:** what should the audience do, know or feel afterwards?
 - **Size:** number of slides or duration.
 
-If the user says "make it Winston" (or similar), the mode is `talk`; do not ask for it. One-pagers default to `read`; say so instead of asking.
+If the user says "make it Winston" (or similar), the mode is `talk` and `winston: true`; do not ask for either. Without a draft and without that request, `winston` is `false`. One-pagers default to `read`; say so instead of asking.
 
 ## Step 2: Plan
 
@@ -79,4 +79,5 @@ The rendering checks (pixels, overflow, fonts, page numbers) are done by `presen
 - [ ] Type styles: no italic, no strikethrough, no plain bold in running text; links follow DS 5.5; ALL CAPS / letter-spacing only as agreed exceptions
 - [ ] Lists, blocks, rows, tables and code within limits for the mode
 - [ ] Sources for numbers as SourceNote; placeholders bracketed and listed
+- [ ] Last slide matches `winston`: 2.15 or 2.7 with `true` (never 2.8), 2.6 / 2.7 / 2.8 with `false`
 - [ ] Spec complete: every field the builder needs is there, no open design decisions

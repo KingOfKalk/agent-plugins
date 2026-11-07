@@ -2,6 +2,22 @@
 
 Reference components as `DS <group>.<n>`; variants add a letter (`DS 9.3-d`). New components get the next free number; numbers are never reused.
 
+## Mode limits
+
+The limits below are for `read`. In `talk` and `both` (see tokens.md, Modes) these apply on top:
+
+| Component | `talk` / `both` |
+|---|---|
+| 2.13 / 2.14 OnePager | not used; one-pagers are `read` |
+| 3.1-3.4 running text | max ~20 words of body per slide |
+| 4.1 Cards / 4.2 Tiles | max 3, title + max ~6 words each |
+| 4.3 Rows | max 3, label + max ~6 words |
+| 5.1 Lists | bullets and checklists not used; numbered max 3 items |
+| 7.x Tables | max 4 rows + header, max 4 columns; prefer a chart |
+| 8.x Charts | fewer labels; one focus |
+| 10.1 CodeBox | max 8 lines |
+| 11.4 Icons | 96px standalone preferred |
+
 ## 1 Foundations
 
 - **1.1 Grid** - see tokens.md

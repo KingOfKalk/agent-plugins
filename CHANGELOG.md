@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.1.1](https://github.com/KingOfKalk/agent-plugins/compare/v4.1.0...v4.1.1) (2026-11-07)
+
+
+### Documentation
+
+* add AGENTS.md, CONTRIBUTING.md, and PR template ([#62](https://github.com/KingOfKalk/agent-plugins/issues/62)) ([9e13029](https://github.com/KingOfKalk/agent-plugins/commit/9e13029c12704eb601983d96fdfc7f9fe117905d))
+
 ## [Unreleased]
 
 ### Refactoring

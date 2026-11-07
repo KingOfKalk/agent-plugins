@@ -27,17 +27,10 @@
       "category": "productivity"
     },
     {
-      "name": "presentation-drafter",
-      "source": "./plugins/presentation-drafter",
-      "description": "Draft structured presentation outlines using the SCR framework and Patrick Winston's How to Speak principles.",
-      "keywords": ["presentation", "slides", "SCR", "outline", "talk"],
-      "category": "productivity"
-    },
-    {
-      "name": "presentation-designer",
-      "source": "./plugins/presentation-designer",
-      "description": "Design and build slide decks, single slides and one-pagers with a grid-first visual system (8px grid, 3 type sizes, 3 palettes, numbered slide types and components) and a pre-flight checklist.",
-      "keywords": ["presentation", "slides", "design-system", "grid", "pptx", "deck"],
+      "name": "presentation",
+      "source": "./plugins/presentation",
+      "description": "Presentations from outline to slides: a drafter skill for structured outlines (SCR, Patrick Winston's How to Speak) and a designer skill for slide decks and one-pagers with a grid-first visual system and a pre-flight checklist.",
+      "keywords": ["presentation", "slides", "SCR", "outline", "talk", "design-system", "grid", "pptx", "deck"],
       "category": "design"
     },
     {

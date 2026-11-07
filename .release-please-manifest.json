@@ -3,7 +3,6 @@
   "plugins/docker": "1.0.0",
   "plugins/git": "1.0.0",
   "plugins/obsidian": "1.0.0",
-  "plugins/presentation-designer": "1.0.0",
-  "plugins/presentation-drafter": "1.0.0",
+  "plugins/presentation": "1.0.0",
   "plugins/statusline": "1.0.0"
 }

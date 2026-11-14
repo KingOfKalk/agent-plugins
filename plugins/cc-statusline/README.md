@@ -1,4 +1,4 @@
-# claude-code-statusline
+# cc-statusline
 
 ![statusline preview](screenshot.png)
 
@@ -16,14 +16,14 @@ Install via the KingOfKalk marketplace in Claude Code
 
 ```
 /plugin marketplace add KingOfKalk/agent-plugins
-/plugin install claude-code-statusline@kingofkalk-plugins
+/plugin install cc-statusline@kingofkalk-plugins
 ```
 
 or directly in your terminal
 
 ```bash
 claude plugin marketplace add KingOfKalk/agent-plugins
-claude plugin install claude-code-statusline@kingofkalk-plugins
+claude plugin install cc-statusline@kingofkalk-plugins
 ```
 
 Installing the plugin is not enough — Claude Code does not yet pick up `statusLine` from plugin manifests, so you must wire the script into your own `settings.json` to activate it.
@@ -34,7 +34,7 @@ Add the following to `~/.claude/settings.json` (or your project's `.claude/setti
 {
   "statusLine": {
     "type": "command",
-    "command": "$HOME/.claude/plugins/marketplaces/kingofkalk-plugins/plugins/claude-code-statusline/statusline.sh",
+    "command": "$HOME/.claude/plugins/marketplaces/kingofkalk-plugins/plugins/cc-statusline/statusline.sh",
     "padding": 0,
     "refreshInterval": 5
   }
@@ -43,7 +43,9 @@ Add the following to `~/.claude/settings.json` (or your project's `.claude/setti
 
 Restart Claude Code after editing `settings.json` to see the statusline.
 
-Upgrading from the old `statusline` plugin: uninstall `statusline@kingofkalk-plugins`, install `claude-code-statusline@kingofkalk-plugins`, and change `plugins/statusline/` to `plugins/claude-code-statusline/` in the `statusLine.command` path of your `settings.json`.
+Upgrading from the old `statusline` plugin: uninstall `statusline@kingofkalk-plugins`, install `cc-statusline@kingofkalk-plugins`, and change `plugins/statusline/` to `plugins/cc-statusline/` in the `statusLine.command` path of your `settings.json`.
+
+Upgrading from `claude-code-statusline`: uninstall `claude-code-statusline@kingofkalk-plugins`, install `cc-statusline@kingofkalk-plugins`, and change `plugins/claude-code-statusline/` to `plugins/cc-statusline/` in the `statusLine.command` path of your `settings.json`.
 
 ## Requirements
 

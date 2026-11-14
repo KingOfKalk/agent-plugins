@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.0.1](https://github.com/KingOfKalk/agent-plugins/compare/v6.0.0...v6.0.1) (2026-11-14)
+
+
+### Documentation
+
+* sort the plugin list alphabetically ([#110](https://github.com/KingOfKalk/agent-plugins/issues/110)) ([93728bc](https://github.com/KingOfKalk/agent-plugins/commit/93728bca0a20df7a430849617cfe3bf2fb3607f6))
+
 ## [6.0.0](https://github.com/KingOfKalk/agent-plugins/compare/v5.0.0...v6.0.0) (2026-11-14)
 
 

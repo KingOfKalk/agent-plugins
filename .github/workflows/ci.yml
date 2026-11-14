@@ -93,11 +93,21 @@ jobs:
         run: scripts/check-manifests.sh
 
       # Outside the checkout, so nothing lands in the repo; needs Node.js >= 22 (runner image).
+      # The CLI's postinstall fetches its native binary, so it must run: the
+      # throwaway package.json allows exactly this package and version
+      # (`allowScripts`), which keeps npm from warning about unapproved install
+      # scripts. `--ignore-scripts` breaks the CLI, and `--allow-scripts` is
+      # rejected for project installs.
       - name: Install Claude Code CLI
         id: install
         if: ${{ !cancelled() }}
         run: |
           node --version
+          npm --version
+          mkdir -p "$RUNNER_TEMP/claude-code"
+          jq -n --arg pkg "@anthropic-ai/claude-code@${CLAUDE_CODE_VERSION}" \
+            '{private: true, allowScripts: {($pkg): true}}' \
+            > "$RUNNER_TEMP/claude-code/package.json"
           npm install --prefix "$RUNNER_TEMP/claude-code" --no-fund --no-audit \
             "@anthropic-ai/claude-code@${CLAUDE_CODE_VERSION}"
           echo "$RUNNER_TEMP/claude-code/node_modules/.bin" >> "$GITHUB_PATH"

@@ -1,6 +1,7 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "kingofkalk-plugins",
+  "description": "Plugins and skills for coding agents by KingOfKalk",
   "owner": {
     "name": "KingOfKalk"
   },

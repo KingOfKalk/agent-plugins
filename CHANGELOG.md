@@ -1,5 +1,21 @@
 # Changelog
 
+## [6.0.0](https://github.com/KingOfKalk/agent-plugins/compare/v5.0.0...v6.0.0) (2026-11-14)
+
+
+### ⚠ BREAKING CHANGES
+
+* **statusline:** claude-code-statusline@kingofkalk-plugins is removed; install cc-statusline@kingofkalk-plugins and change plugins/claude-code-statusline/ to plugins/cc-statusline/ in the statusLine.command path of settings.json.
+
+### Features
+
+* **review:** add review plugin with the well-better-next code review skill ([#106](https://github.com/KingOfKalk/agent-plugins/issues/106)) ([80fd340](https://github.com/KingOfKalk/agent-plugins/commit/80fd3406aa785439219bb57db0cd3dc6a6d32fdc))
+
+
+### Refactoring
+
+* **statusline:** rename plugin to cc-statusline ([#102](https://github.com/KingOfKalk/agent-plugins/issues/102)) ([f61c7a4](https://github.com/KingOfKalk/agent-plugins/commit/f61c7a4412ae7a620572e97f3d67509399c36613)), closes [#100](https://github.com/KingOfKalk/agent-plugins/issues/100)
+
 ## [5.0.0](https://github.com/KingOfKalk/agent-plugins/compare/v4.1.1...v5.0.0) (2026-11-07)
 
 

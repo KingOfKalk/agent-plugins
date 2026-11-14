@@ -63,9 +63,36 @@ Thanks for your interest. This repo follows a tight, issue-driven workflow. This
   - **Summary**: 1–3 bullets on what changed and why.
   - **Test Plan**: how the change was verified (omit for pure docs/typo changes).
 - Label issues and PRs with existing labels only; don't create new ones.
-- After opening, watch CI checks if any are configured (`gh pr checks`) and review feedback (`gh pr view --comments`). Resolve conflicts by rebasing onto `main`.
+- After opening, watch the [checks](#checks) and review feedback (`gh pr view --comments`). Resolve conflicts by rebasing onto `main`.
+  - CI runs: `gh run list --branch <branch>`, then `gh run watch <run-id> --exit-status`; failed logs: `gh run view <run-id> --log-failed`.
+  - `gh pr checks` fails with fine-grained personal access tokens (the Checks API isn't open to them).
 - Keep scope tight — open a separate PR for unrelated work.
 - Maintainer merges; do not self-merge.
+
+## Checks
+
+[CI](.github/workflows/ci.yml) runs three jobs on every pull request and push to `main`; all three are required to merge:
+
+- `lint`: [shellcheck](https://github.com/koalaman/shellcheck) on all `*.sh`, [actionlint](https://github.com/rhysd/actionlint) on the workflows ([config](.github/actionlint.yaml)), valid JSON, skill names (`name:` equals the folder and starts with `<plugin>-`).
+- `test`: the git-guard hook tests.
+- `build`: `claude plugin validate` on the marketplace and every plugin (errors fail, warnings go to the job summary); every `plugins/*` folder is in `marketplace.json` and `.release-please-manifest.json`, and each `plugin.json` version matches the manifest.
+
+Run them locally from the repo root (needs `bash`, `git`, `jq`, Docker for the linters, and the Claude Code CLI for `validate-plugins.sh`; no login or API key):
+
+```sh
+# lint
+git ls-files -z '*.sh' | xargs -0 docker run --rm -v "$PWD":"$PWD" -w "$PWD" koalaman/shellcheck:v0.11.0 --format=gcc
+docker run --rm -v "$PWD":"$PWD" -w "$PWD" rhysd/actionlint:1.7.12
+scripts/check-json.sh
+scripts/check-skills.sh
+# test
+plugins/git/hooks/tests/run.sh
+# build
+scripts/check-manifests.sh
+scripts/validate-plugins.sh
+```
+
+Skill evals (`plugins/*/skills/*/evals/`) are not part of CI: they need a model and an API key.
 
 ## Releases
 

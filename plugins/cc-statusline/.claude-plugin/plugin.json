@@ -2,6 +2,10 @@
   "name": "cc-statusline",
   "version": "2.0.0",
   "description": "Claude Code only: colorful statusline showing model, cwd, git branch/dirty state, context-window usage bar, and output style.",
+  "author": {
+    "name": "KingOfKalk",
+    "url": "https://github.com/KingOfKalk"
+  },
   "statusLine": {
     "type": "command",
     "command": "${CLAUDE_PLUGIN_ROOT}/statusline.sh",

@@ -1,5 +1,9 @@
 {
   "name": "presentation",
   "version": "2.0.0",
-  "description": "Presentations in three steps: drafter (storyline, SCR, Winston), designer (grid-first visual system, talk / read modes, spec) and builder (shareable HTML, PDF, PPTX)."
+  "description": "Presentations in three steps: drafter (storyline, SCR, Winston), designer (grid-first visual system, talk / read modes, spec) and builder (shareable HTML, PDF, PPTX).",
+  "author": {
+    "name": "KingOfKalk",
+    "url": "https://github.com/KingOfKalk"
+  }
 }

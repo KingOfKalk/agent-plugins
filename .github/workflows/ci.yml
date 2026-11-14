@@ -1,0 +1,108 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions: {}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+# Three chained jobs, required by the `main` ruleset: Lint -> Test -> Build. The checks live
+# in scripts/ and run locally too (see CONTRIBUTING.md, Checks). Skill evals are
+# not run here: they need a model and an API key.
+#
+# shellcheck and actionlint run from their official images, pinned by tag and
+# digest (Dependabot does not update images in `run` steps: bump them by hand).
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-26.04
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      # gcc format: the image has no UTF-8 locale and the default format aborts
+      # when it quotes a source line with non-ASCII characters.
+      - name: shellcheck
+        if: ${{ !cancelled() }}
+        run: >-
+          git ls-files -z '*.sh' |
+          xargs -0 docker run --rm -v "$PWD":"$PWD" -w "$PWD"
+          koalaman/shellcheck:v0.11.0@sha256:61862eba1fcf09a484ebcc6feea46f1782532571a34ed51fedf90dd25f925a8d
+          --format=gcc
+
+      # Reads .github/actionlint.yaml (runner labels); also runs shellcheck on `run` scripts.
+      - name: actionlint
+        if: ${{ !cancelled() }}
+        run: >-
+          docker run --rm -v "$PWD":"$PWD" -w "$PWD"
+          rhysd/actionlint:1.7.12@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667
+          -color
+
+      - name: JSON syntax
+        if: ${{ !cancelled() }}
+        run: scripts/check-json.sh
+
+      - name: Skill names
+        if: ${{ !cancelled() }}
+        run: scripts/check-skills.sh
+
+  test:
+    name: Test
+    needs: lint
+    runs-on: ubuntu-26.04
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: git-guard hook tests
+        run: bash plugins/git/hooks/tests/run.sh
+
+  build:
+    name: Build
+    needs: test
+    runs-on: ubuntu-26.04
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    env:
+      # Pinned exactly; bump by hand (npm dist-tag `stable`).
+      CLAUDE_CODE_VERSION: 2.1.311
+      # `claude plugin validate` needs no login or API key; keep the CLI offline otherwise.
+      CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC: '1'
+      DISABLE_AUTOUPDATER: '1'
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Manifests
+        if: ${{ !cancelled() }}
+        run: scripts/check-manifests.sh
+
+      # Outside the checkout, so nothing lands in the repo; needs Node.js >= 22 (runner image).
+      - name: Install Claude Code CLI
+        id: install
+        if: ${{ !cancelled() }}
+        run: |
+          node --version
+          npm install --prefix "$RUNNER_TEMP/claude-code" --no-fund --no-audit \
+            "@anthropic-ai/claude-code@${CLAUDE_CODE_VERSION}"
+          echo "$RUNNER_TEMP/claude-code/node_modules/.bin" >> "$GITHUB_PATH"
+
+      # Errors fail the step; warnings go to the job summary.
+      - name: claude plugin validate
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+        run: scripts/validate-plugins.sh

@@ -5,10 +5,5 @@
   "author": {
     "name": "KingOfKalk",
     "url": "https://github.com/KingOfKalk"
-  },
-  "statusLine": {
-    "type": "command",
-    "command": "${CLAUDE_PLUGIN_ROOT}/statusline.sh",
-    "padding": 0
   }
 }

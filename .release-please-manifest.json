@@ -1,9 +1,9 @@
 {
-  ".": "5.0.0",
+  ".": "6.0.0",
   "plugins/docker": "2.0.0",
   "plugins/git": "2.0.0",
   "plugins/obsidian": "2.0.0",
   "plugins/presentation": "2.0.0",
-  "plugins/cc-statusline": "2.0.0",
-  "plugins/review": "0.0.0"
+  "plugins/cc-statusline": "3.0.0",
+  "plugins/review": "1.0.0"
 }

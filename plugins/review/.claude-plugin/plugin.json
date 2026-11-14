@@ -1,5 +1,5 @@
 {
   "name": "review",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Read-only, evidence-based code review in the Well, Better, Next format: concrete practices to keep, better alternatives and real risks, each backed by path:line evidence, with quick, normal and deep modes."
 }

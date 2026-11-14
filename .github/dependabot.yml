@@ -1,0 +1,22 @@
+version: 2
+updates:
+  # Actions are pinned by commit SHA with a `# vX.Y.Z` comment; Dependabot updates both.
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: chore
+      include: scope
+    # No labels: the default `dependencies` label does not exist here.
+    labels: []
+
+  # Features in .devcontainer/devcontainer.json (not the base image).
+  - package-ecosystem: devcontainers
+    directory: /
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: chore
+      include: scope
+    labels: []

@@ -75,7 +75,7 @@ Thanks for your interest. This repo follows a tight, issue-driven workflow. This
 
 - `Lint`: [shellcheck](https://github.com/koalaman/shellcheck) on all `*.sh`, [actionlint](https://github.com/rhysd/actionlint) on the workflows ([config](.github/actionlint.yaml)), valid JSON, skill names (`name:` equals the folder and starts with `<plugin>-`).
 - `Test`: the git-guard hook tests.
-- `Build`: `claude plugin validate` on the marketplace and every plugin (errors fail, warnings go to the job summary); every `plugins/*` folder is in `marketplace.json` and `.release-please-manifest.json`, and each `plugin.json` version matches the manifest.
+- `Build`: `claude plugin validate` on the marketplace and every plugin (errors fail, warnings go to the job summary); every `plugins/*` folder is in `marketplace.json` and `.release-please-manifest.json`, and each `plugin.json` version (`version.txt` for the root) matches the manifest.
 
 Run them locally from the repo root (needs `bash`, `git`, `jq`, Docker for the linters, and the Claude Code CLI for `validate-plugins.sh`; no login or API key):
 
@@ -102,7 +102,7 @@ Skill evals (`plugins/*/skills/*/evals/`) are not part of CI: they need a model 
   - Changelog lives in `plugins/<plugin>/CHANGELOG.md`.
   - Tags: `<plugin>--v<version>`, e.g. `git--v1.2.0` — the [Claude Code convention](https://code.claude.com/docs/en/plugins/dependencies.md) that plugin dependency version ranges resolve against.
   - Commits are assigned by changed file paths, not by scope — a commit touching only `plugins/git/**` releases only `git`.
-- The repo root (`.claude-plugin/plugin.json`, root `CHANGELOG.md`, tags `v<version>`) is versioned separately and only bumps for changes outside `plugins/`.
+- The repo root (`version.txt`, root `CHANGELOG.md`, tags `v<version>`) is versioned separately and only bumps for changes outside `plugins/`. The root has no `.claude-plugin/plugin.json`: it is the marketplace, not a plugin, so `claude plugin validate .` checks it as a marketplace only.
 - The `latest` branch is fast-forwarded to the release commit after every release (root or any plugin) by [release.yml](.github/workflows/release.yml). Users pin `#latest` to get released code only. Never commit to `latest` directly.
 - New plugin: release-please treats the manifest version as already released, so without a pin the first release would be 1.1.0 (`feat`) or 2.0.0 (breaking). Pin it to 1.0.0:
   - `plugin.json`: `"version": "0.0.0"`; `.release-please-manifest.json`: `"plugins/<plugin>": "0.0.0"`.

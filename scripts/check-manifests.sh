@@ -3,8 +3,10 @@
 # - every plugins/<plugin> folder is listed in .claude-plugin/marketplace.json
 #   (.plugins[].source) and every listed source exists as a folder
 # - every plugins/<plugin> folder is a package in .release-please-manifest.json
-# - each package's plugin.json version equals its version in
-#   .release-please-manifest.json ("." is .claude-plugin/plugin.json)
+# - each package's version file equals its version in
+#   .release-please-manifest.json: plugins/<plugin>/.claude-plugin/plugin.json,
+#   and version.txt for the repo root (".", no plugin.json, so the root is not
+#   validated as a plugin)
 # Needs jq. Run from anywhere: scripts/check-manifests.sh
 set -euo pipefail
 export LC_ALL=C
@@ -34,7 +36,7 @@ done < <(comm -23 <(echo "$dirs") <(jq -r 'keys[] | select(. != ".")' "$MANIFEST
 
 while IFS=$'\t' read -r pkg expected; do
   if [ "$pkg" = "." ]; then
-    file=.claude-plugin/plugin.json
+    file=version.txt
   else
     file=$pkg/.claude-plugin/plugin.json
   fi
@@ -43,7 +45,11 @@ while IFS=$'\t' read -r pkg expected; do
     fail=1
     continue
   fi
-  actual=$(jq -r '.version // empty' "$file")
+  if [ "$pkg" = "." ]; then
+    actual=$(tr -d '[:space:]' <"$file")
+  else
+    actual=$(jq -r '.version // empty' "$file")
+  fi
   if [ "$actual" != "$expected" ]; then
     echo "::error file=$file::version '${actual}' differs from '$expected' in $MANIFEST"
     fail=1

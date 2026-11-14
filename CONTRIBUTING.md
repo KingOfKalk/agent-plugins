@@ -69,6 +69,12 @@ Thanks for your interest. This repo follows a tight, issue-driven workflow. This
 - Keep scope tight — open a separate PR for unrelated work.
 - Maintainer merges; do not self-merge.
 
+## Icons
+
+- Every plugin has an icon at `plugins/<plugin>/.claude-plugin/icon.png` (512×512), where `claude plugin validate` looks for it.
+- Sources: `assets/icons/<plugin>.svg`, one shared style (navy rounded square, cream pictogram, one accent color per plugin, no text).
+- After adding or changing an SVG, run `scripts/render-icons.sh` (needs Docker; renders with the pinned Playwright image) and commit the SVG and the PNG.
+
 ## Checks
 
 [CI](.github/workflows/ci.yml) runs three chained jobs on every pull request and push to `main` (`Lint`, then `Test`, then `Build`; a failed job skips the later ones). All three are required to merge:

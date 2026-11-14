@@ -81,7 +81,7 @@ Thanks for your interest. This repo follows a tight, issue-driven workflow. This
   - `plugin.json`: `"version": "0.0.0"`; `.release-please-manifest.json`: `"plugins/<plugin>": "0.0.0"`.
   - `release-please-config.json`: add the package entry with `"release-as": "1.0.0"`.
   - After the release PR that publishes 1.0.0 is merged, remove `"release-as"` in a follow-up PR; otherwise every later release stays at 1.0.0.
-  - The same applies when a plugin is renamed (new package path and component).
+- Renamed plugin: keep its version in `plugin.json` and the manifest (new package path and component, no `release-as`). The breaking rename commit bumps the major version, and the moved `CHANGELOG.md` keeps its history.
 - Version bumps:
   - Major: breaking change (`!` or `BREAKING CHANGE:` footer).
   - Minor: `feat`.

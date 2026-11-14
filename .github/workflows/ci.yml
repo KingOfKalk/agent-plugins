@@ -112,7 +112,8 @@ jobs:
             "@anthropic-ai/claude-code@${CLAUDE_CODE_VERSION}"
           echo "$RUNNER_TEMP/claude-code/node_modules/.bin" >> "$GITHUB_PATH"
 
-      # Errors fail the step; warnings go to the job summary.
+      # Errors fail the step; warnings go to the job summary, new ones apart
+      # from those accepted in scripts/validate-allowlist.txt.
       - name: claude plugin validate
         if: ${{ !cancelled() && steps.install.outcome == 'success' }}
         run: scripts/validate-plugins.sh

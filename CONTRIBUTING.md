@@ -81,7 +81,13 @@ Thanks for your interest. This repo follows a tight, issue-driven workflow. This
 
 - `Lint`: [shellcheck](https://github.com/koalaman/shellcheck) on all `*.sh`, [actionlint](https://github.com/rhysd/actionlint) on the workflows ([config](.github/actionlint.yaml)), valid JSON, skill names (`name:` equals the folder and starts with `<plugin>-`).
 - `Test`: the git-guard hook tests.
-- `Build`: `claude plugin validate` on the marketplace and every plugin (errors fail, warnings go to the job summary); every `plugins/*` folder is in `marketplace.json` and `.release-please-manifest.json`, and each `plugin.json` version (`version.txt` for the root) matches the manifest.
+- `Build`: `claude plugin validate` on the marketplace and every plugin; every `plugins/*` folder is in `marketplace.json` and `.release-please-manifest.json`, and each `plugin.json` version (`version.txt` for the root) matches the manifest.
+
+`claude plugin validate` results:
+
+- Errors fail `Build`. Warnings don't, but the goal is zero: fix a warning rather than accept it.
+- A warning that can't be fixed goes into [`scripts/validate-allowlist.txt`](scripts/validate-allowlist.txt): one entry per line (a fixed substring of the warning line), with a comment line above it that says why. An entry without a reason fails `Build`.
+- The job summary lists new warnings (also annotated on the PR) and accepted (allowlisted) warnings with their reasons in separate sections, plus allowlist entries that no longer match anything; remove those.
 
 Run them locally from the repo root (needs `bash`, `git`, `jq`, Docker for the linters, and the Claude Code CLI for `validate-plugins.sh`; no login or API key):
 

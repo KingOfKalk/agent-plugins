@@ -61,8 +61,8 @@
         }
       ]
     },
-    "plugins/claude-code-statusline": {
-      "component": "claude-code-statusline",
+    "plugins/cc-statusline": {
+      "component": "cc-statusline",
       "extra-files": [
         {
           "type": "json",

@@ -1,5 +1,5 @@
 {
-  "name": "claude-code-statusline",
+  "name": "cc-statusline",
   "version": "2.0.0",
   "description": "Claude Code only: colorful statusline showing model, cwd, git branch/dirty state, context-window usage bar, and output style.",
   "statusLine": {

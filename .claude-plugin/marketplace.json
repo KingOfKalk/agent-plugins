@@ -34,8 +34,8 @@
       "category": "design"
     },
     {
-      "name": "claude-code-statusline",
-      "source": "./plugins/claude-code-statusline",
+      "name": "cc-statusline",
+      "source": "./plugins/cc-statusline",
       "description": "Claude Code only: colorful statusline showing model, cwd, git branch/dirty state, context-window usage bar, and output style.",
       "keywords": ["statusline", "claude-code", "ui", "git", "context-window"],
       "category": "ui"

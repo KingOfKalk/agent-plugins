@@ -26,7 +26,7 @@ claude plugin marketplace add KingOfKalk/agent-plugins
 claude plugin install cc-statusline@kingofkalk-plugins
 ```
 
-Installing the plugin is not enough — Claude Code does not yet pick up `statusLine` from plugin manifests, so you must wire the script into your own `settings.json` to activate it.
+Installing the plugin is not enough — a plugin cannot ship a status line (`plugin.json` has no `statusLine` field, see the [plugin manifest reference](https://code.claude.com/docs/en/plugins/manifest-reference)), so you must wire the script into your own `settings.json` to activate it.
 
 Add the following to `~/.claude/settings.json` (or your project's `.claude/settings.json`):
 

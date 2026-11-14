@@ -1,0 +1,12 @@
+# Accepted `claude plugin validate` warnings, read by scripts/validate-plugins.sh.
+#
+# One entry per line: a fixed string (not a regex) that is matched against the
+# warning line as printed in the log, "<file>: <path>: <message>". A matching
+# warning is listed as accepted instead of new. Comment lines (#) right above
+# an entry give the reason, shown next to it in the job summary; every entry
+# needs one. Blank lines end a reason. Remove an entry once its warning is gone:
+# the script flags entries that matched nothing.
+#
+# Example:
+#   # Claude Code 2.1.x flags `foo` as unknown, but the plugin directory needs it.
+#   plugins/example/.claude-plugin/plugin.json: foo: Unknown field 'foo'

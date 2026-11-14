@@ -69,13 +69,25 @@ Thanks for your interest. This repo follows a tight, issue-driven workflow. This
 - Keep scope tight — open a separate PR for unrelated work.
 - Maintainer merges; do not self-merge.
 
+## Icons
+
+- Every plugin has an icon at `plugins/<plugin>/.claude-plugin/icon.png` (512×512), where `claude plugin validate` looks for it.
+- Sources: `assets/icons/<plugin>.svg`, one shared style (navy rounded square, cream pictogram, one accent color per plugin, no text).
+- After adding or changing an SVG, run `scripts/render-icons.sh` (needs Docker; renders with the pinned Playwright image) and commit the SVG and the PNG.
+
 ## Checks
 
 [CI](.github/workflows/ci.yml) runs three chained jobs on every pull request and push to `main` (`Lint`, then `Test`, then `Build`; a failed job skips the later ones). All three are required to merge:
 
 - `Lint`: [shellcheck](https://github.com/koalaman/shellcheck) on all `*.sh`, [actionlint](https://github.com/rhysd/actionlint) on the workflows ([config](.github/actionlint.yaml)), valid JSON, skill names (`name:` equals the folder and starts with `<plugin>-`).
 - `Test`: the git-guard hook tests.
-- `Build`: `claude plugin validate` on the marketplace and every plugin (errors fail, warnings go to the job summary); every `plugins/*` folder is in `marketplace.json` and `.release-please-manifest.json`, and each `plugin.json` version matches the manifest.
+- `Build`: `claude plugin validate` on the marketplace and every plugin; every `plugins/*` folder is in `marketplace.json` and `.release-please-manifest.json`, and each `plugin.json` version (`version.txt` for the root) matches the manifest.
+
+`claude plugin validate` results:
+
+- Errors fail `Build`. Warnings don't, but the goal is zero: fix a warning rather than accept it.
+- A warning that can't be fixed goes into [`scripts/validate-allowlist.txt`](scripts/validate-allowlist.txt): one entry per line (a fixed substring of the warning line), with a comment line above it that says why. An entry without a reason fails `Build`.
+- The job summary lists new warnings (also annotated on the PR) and accepted (allowlisted) warnings with their reasons in separate sections, plus allowlist entries that no longer match anything; remove those.
 
 Run them locally from the repo root (needs `bash`, `git`, `jq`, Docker for the linters, and the Claude Code CLI for `validate-plugins.sh`; no login or API key):
 
@@ -102,7 +114,7 @@ Skill evals (`plugins/*/skills/*/evals/`) are not part of CI: they need a model 
   - Changelog lives in `plugins/<plugin>/CHANGELOG.md`.
   - Tags: `<plugin>--v<version>`, e.g. `git--v1.2.0` — the [Claude Code convention](https://code.claude.com/docs/en/plugins/dependencies.md) that plugin dependency version ranges resolve against.
   - Commits are assigned by changed file paths, not by scope — a commit touching only `plugins/git/**` releases only `git`.
-- The repo root (`.claude-plugin/plugin.json`, root `CHANGELOG.md`, tags `v<version>`) is versioned separately and only bumps for changes outside `plugins/`.
+- The repo root (`version.txt`, root `CHANGELOG.md`, tags `v<version>`) is versioned separately and only bumps for changes outside `plugins/`. The root has no `.claude-plugin/plugin.json`: it is the marketplace, not a plugin, so `claude plugin validate .` checks it as a marketplace only.
 - The `latest` branch is fast-forwarded to the release commit after every release (root or any plugin) by [release.yml](.github/workflows/release.yml). Users pin `#latest` to get released code only. Never commit to `latest` directly.
 - New plugin: release-please treats the manifest version as already released, so without a pin the first release would be 1.1.0 (`feat`) or 2.0.0 (breaking). Pin it to 1.0.0:
   - `plugin.json`: `"version": "0.0.0"`; `.release-please-manifest.json`: `"plugins/<plugin>": "0.0.0"`.

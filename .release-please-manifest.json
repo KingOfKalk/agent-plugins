@@ -4,5 +4,6 @@
   "plugins/git": "2.0.0",
   "plugins/obsidian": "2.0.0",
   "plugins/presentation": "2.0.0",
-  "plugins/cc-statusline": "2.0.0"
+  "plugins/cc-statusline": "2.0.0",
+  "plugins/review": "0.0.0"
 }

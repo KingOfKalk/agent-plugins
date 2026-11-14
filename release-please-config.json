@@ -70,6 +70,17 @@
           "jsonpath": "$.version"
         }
       ]
+    },
+    "plugins/review": {
+      "component": "review",
+      "release-as": "1.0.0",
+      "extra-files": [
+        {
+          "type": "json",
+          "path": ".claude-plugin/plugin.json",
+          "jsonpath": "$.version"
+        }
+      ]
     }
   }
 }

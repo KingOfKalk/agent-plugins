@@ -4,19 +4,53 @@ on:
   push:
     branches: [main]
 
-permissions:
-  contents: write
-  pull-requests: write
+permissions: {}
+
+# One run at a time: two quick merges otherwise race on the release PR branch.
+# Queued runs are not cancelled.
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
 
 jobs:
+  # Writes with short-lived installation tokens of the private GitHub App
+  # KingOfKalk-Release-Bot (secrets RELEASE_APP_CLIENT_ID and
+  # RELEASE_APP_PRIVATE_KEY) instead of GITHUB_TOKEN: events created with
+  # GITHUB_TOKEN start no workflows, so with the App token the release PR runs
+  # CI and reports the required checks. GITHUB_TOKEN gets no permissions.
   release-please:
     runs-on: ubuntu-26.04
+    timeout-minutes: 10
+    permissions: {}
     steps:
-      - id: release
-        uses: googleapis/release-please-action@v5.0.0
+      # contents: commits, release branch, tags and releases; pull-requests:
+      # the release PR and its `autorelease: *` labels (both labels exist).
+      - id: app-token
+        uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
         with:
+          client-id: ${{ secrets.RELEASE_APP_CLIENT_ID }}
+          private-key: ${{ secrets.RELEASE_APP_PRIVATE_KEY }}
+          permission-contents: write
+          permission-pull-requests: write
+
+      - id: release
+        uses: googleapis/release-please-action@45996ed1f6d02564a971a2fa1b5860e934307cf7 # v5.0.0
+        with:
+          token: ${{ steps.app-token.outputs.token }}
           config-file: release-please-config.json
           manifest-file: .release-please-manifest.json
+
+      # A token of its own for moving `latest`: a fast-forward that brings in
+      # changes to .github/workflows needs the workflows permission, which the
+      # release-please token does not get.
+      - id: latest-token
+        if: ${{ steps.release.outputs.releases_created == 'true' }}
+        uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
+        with:
+          client-id: ${{ secrets.RELEASE_APP_CLIENT_ID }}
+          private-key: ${{ secrets.RELEASE_APP_PRIVATE_KEY }}
+          permission-contents: write
+          permission-workflows: write
 
       # Fast-forward the `latest` branch to the release commit after any
       # release (root or plugin). Users pin `KingOfKalk/agent-plugins#latest`
@@ -24,7 +58,7 @@ jobs:
       - name: Update latest branch
         if: ${{ steps.release.outputs.releases_created == 'true' }}
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ steps.latest-token.outputs.token }}
         run: |
           if gh api "repos/${GITHUB_REPOSITORY}/git/ref/heads/latest" --silent 2>/dev/null; then
             gh api -X PATCH "repos/${GITHUB_REPOSITORY}/git/refs/heads/latest" \

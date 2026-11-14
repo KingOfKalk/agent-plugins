@@ -71,23 +71,23 @@ Thanks for your interest. This repo follows a tight, issue-driven workflow. This
 
 ## Checks
 
-[CI](.github/workflows/ci.yml) runs three jobs on every pull request and push to `main`; all three are required to merge:
+[CI](.github/workflows/ci.yml) runs three chained jobs on every pull request and push to `main` (`Lint`, then `Test`, then `Build`; a failed job skips the later ones). All three are required to merge:
 
-- `lint`: [shellcheck](https://github.com/koalaman/shellcheck) on all `*.sh`, [actionlint](https://github.com/rhysd/actionlint) on the workflows ([config](.github/actionlint.yaml)), valid JSON, skill names (`name:` equals the folder and starts with `<plugin>-`).
-- `test`: the git-guard hook tests.
-- `build`: `claude plugin validate` on the marketplace and every plugin (errors fail, warnings go to the job summary); every `plugins/*` folder is in `marketplace.json` and `.release-please-manifest.json`, and each `plugin.json` version matches the manifest.
+- `Lint`: [shellcheck](https://github.com/koalaman/shellcheck) on all `*.sh`, [actionlint](https://github.com/rhysd/actionlint) on the workflows ([config](.github/actionlint.yaml)), valid JSON, skill names (`name:` equals the folder and starts with `<plugin>-`).
+- `Test`: the git-guard hook tests.
+- `Build`: `claude plugin validate` on the marketplace and every plugin (errors fail, warnings go to the job summary); every `plugins/*` folder is in `marketplace.json` and `.release-please-manifest.json`, and each `plugin.json` version matches the manifest.
 
 Run them locally from the repo root (needs `bash`, `git`, `jq`, Docker for the linters, and the Claude Code CLI for `validate-plugins.sh`; no login or API key):
 
 ```sh
-# lint
+# Lint
 git ls-files -z '*.sh' | xargs -0 docker run --rm -v "$PWD":"$PWD" -w "$PWD" koalaman/shellcheck:v0.11.0 --format=gcc
 docker run --rm -v "$PWD":"$PWD" -w "$PWD" rhysd/actionlint:1.7.12
 scripts/check-json.sh
 scripts/check-skills.sh
-# test
+# Test
 plugins/git/hooks/tests/run.sh
-# build
+# Build
 scripts/check-manifests.sh
 scripts/validate-plugins.sh
 ```

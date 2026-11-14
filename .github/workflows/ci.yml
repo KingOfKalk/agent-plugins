@@ -11,7 +11,7 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
-# Three jobs, required by the `main` ruleset: lint, test, build. The checks live
+# Three chained jobs, required by the `main` ruleset: Lint -> Test -> Build. The checks live
 # in scripts/ and run locally too (see CONTRIBUTING.md, Checks). Skill evals are
 # not run here: they need a model and an API key.
 #
@@ -19,6 +19,7 @@ concurrency:
 # digest (Dependabot does not update images in `run` steps: bump them by hand).
 jobs:
   lint:
+    name: Lint
     runs-on: ubuntu-26.04
     timeout-minutes: 10
     permissions:
@@ -55,6 +56,8 @@ jobs:
         run: scripts/check-skills.sh
 
   test:
+    name: Test
+    needs: lint
     runs-on: ubuntu-26.04
     timeout-minutes: 10
     permissions:
@@ -68,6 +71,8 @@ jobs:
         run: bash plugins/git/hooks/tests/run.sh
 
   build:
+    name: Build
+    needs: test
     runs-on: ubuntu-26.04
     timeout-minutes: 10
     permissions:

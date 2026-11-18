@@ -1,6 +1,6 @@
 {
   "name": "git",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Git and forge workflow: atomic Conventional Commits, an issue-to-pull-request git-ship skill, and guardrail hooks (no git -C, no commits/pushes on main, origin only, no AI attribution).",
   "author": {
     "name": "KingOfKalk",

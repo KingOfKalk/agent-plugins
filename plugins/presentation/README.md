@@ -4,8 +4,18 @@ Presentations in three steps: content, look, implementation. Each step is a skil
 
 ## Installation
 
+Add the marketplace first (see [Installation](../../README.md#installation)), then:
+
+Claude Code:
+
 ```
 /plugin install presentation@kingofkalk-plugins
+```
+
+GitHub Copilot CLI:
+
+```bash
+copilot plugin install presentation@kingofkalk-plugins
 ```
 
 ## Skills

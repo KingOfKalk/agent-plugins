@@ -8,8 +8,18 @@ Git and forge workflow for Claude Code:
 
 ## Installation
 
+Add the marketplace first (see [Installation](../../README.md#installation)), then:
+
+Claude Code:
+
 ```
 /plugin install git@kingofkalk-plugins
+```
+
+GitHub Copilot CLI:
+
+```bash
+copilot plugin install git@kingofkalk-plugins
 ```
 
 ## Skills
@@ -28,6 +38,8 @@ Git and forge workflow for Claude Code:
 ## Hooks
 
 [`hooks/git-guard.sh`](hooks/git-guard.sh), registered in [`hooks/hooks.json`](hooks/hooks.json). Requires `bash` and `jq`.
+
+Claude Code only: `hooks.json` uses Claude Code's hook format. In GitHub Copilot CLI the plugin installs its skills, but the hooks are Claude Code only, so the guardrails below are not enforced there.
 
 ### PreToolUse (blocks the tool call)
 

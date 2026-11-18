@@ -4,8 +4,18 @@ Interact with Obsidian vaults via the [Obsidian CLI](https://github.com/Yakitrak
 
 ## Installation
 
+Add the marketplace first (see [Installation](../../README.md#installation)), then:
+
+Claude Code:
+
 ```
 /plugin install obsidian@kingofkalk-plugins
+```
+
+GitHub Copilot CLI:
+
+```bash
+copilot plugin install obsidian@kingofkalk-plugins
 ```
 
 ## Skills

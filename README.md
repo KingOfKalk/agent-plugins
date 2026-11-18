@@ -1,6 +1,6 @@
 # Agent Plugins
 
-Plugins and skills for coding agents by KingOfKalk — Claude Code (primary target), Codex CLI compatible (both read `.claude-plugin/marketplace.json`), and skills usable by any other agent that reads `SKILL.md`.
+Plugins and skills for coding agents by KingOfKalk — Claude Code (primary target), Codex CLI and GitHub Copilot CLI compatible (all three read `.claude-plugin/marketplace.json`), and skills usable by any other agent that reads `SKILL.md`.
 
 The repository is `KingOfKalk/agent-plugins`, but the marketplace name is `kingofkalk-plugins` — the two differ on purpose.
 
@@ -24,7 +24,13 @@ Codex CLI:
 codex plugin marketplace add KingOfKalk/agent-plugins
 ```
 
-### Pinning a ref (Claude Code)
+GitHub Copilot CLI (needs `git` on your `PATH`):
+
+```bash
+copilot plugin marketplace add KingOfKalk/agent-plugins
+```
+
+### Pinning a ref (Claude Code, Copilot CLI)
 
 Without a ref, the marketplace tracks `main`. Append `#<ref>` to pin a branch or tag:
 
@@ -43,15 +49,40 @@ Without a ref, the marketplace tracks `main`. Append `#<ref>` to pin a branch or
 
   A pin freezes the whole marketplace at that commit — a plugin tag also pins every other plugin to its state at that commit.
 
+- Copilot CLI takes the same refs:
+
+  ```bash
+  copilot plugin marketplace add KingOfKalk/agent-plugins#latest
+  ```
+
 ## Installing a single plugin
 
 Once the marketplace is added, install individual plugins by name. The
-marketplace identifier is `kingofkalk-plugins`:
+marketplace identifier is `kingofkalk-plugins`, not the repository name:
+
+Claude Code:
 
 ```
 /plugin install git@kingofkalk-plugins
 /reload-plugins
 ```
+
+GitHub Copilot CLI:
+
+```bash
+copilot plugin install git@kingofkalk-plugins
+```
+
+Copilot CLI errors and their cause:
+
+| Error | Cause |
+|---|---|
+| `"git" is not installed or not found on PATH` | Install `git`. |
+| `Marketplace "kingofkalk-plugins" not found` | Add the marketplace first (see [Installation](#installation)). |
+| `Marketplace "agent-plugins" not found` | Use the marketplace name: `<plugin>@kingofkalk-plugins`. |
+| `No plugin.json found in repository` | The repository is a marketplace, not a plugin: add it as a marketplace, then install by name. |
+
+Copilot CLI support is limited to skills: the `git` guardrail hooks and `cc-statusline` work in Claude Code only.
 
 ## Available plugins and skills
 

@@ -4,8 +4,18 @@ Read-only code review skills for Claude Code and other agents that read `SKILL.m
 
 ## Installation
 
+Add the marketplace first (see [Installation](../../README.md#installation)), then:
+
+Claude Code:
+
 ```
 /plugin install review@kingofkalk-plugins
+```
+
+GitHub Copilot CLI:
+
+```bash
+copilot plugin install review@kingofkalk-plugins
 ```
 
 ## Skills

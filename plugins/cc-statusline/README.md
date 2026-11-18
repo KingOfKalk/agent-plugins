@@ -2,7 +2,7 @@
 
 ![statusline preview](screenshot.png)
 
-A colorful statusline for Claude Code that renders on a single line. It uses Claude Code's status line API, so it does not work in Codex CLI or other agents.
+A colorful statusline for Claude Code that renders on a single line. It uses Claude Code's status line API, so it does not work in Codex CLI, GitHub Copilot CLI or other agents. Copilot CLI installs it without errors, but it has no effect there.
 
 - **Model** — current model display name
 - **Directory** — basename of the working directory

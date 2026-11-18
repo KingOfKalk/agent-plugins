@@ -4,8 +4,18 @@ Manage Docker containers and Docker Compose services with automatic devcontainer
 
 ## Installation
 
+Add the marketplace first (see [Installation](../../README.md#installation)), then:
+
+Claude Code:
+
 ```
 /plugin install docker@kingofkalk-plugins
+```
+
+GitHub Copilot CLI:
+
+```bash
+copilot plugin install docker@kingofkalk-plugins
 ```
 
 ## Skills

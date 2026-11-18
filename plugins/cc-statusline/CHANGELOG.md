@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.1](https://github.com/KingOfKalk/agent-plugins/compare/cc-statusline--v3.0.0...cc-statusline--v3.0.1) (2026-11-18)
+
+
+### Documentation
+
+* document installation with GitHub Copilot CLI ([#113](https://github.com/KingOfKalk/agent-plugins/issues/113)) ([784ecc2](https://github.com/KingOfKalk/agent-plugins/commit/784ecc251ef83848c0323cfd3ddf04b559ec1b89))
+
 ## [3.0.0](https://github.com/KingOfKalk/agent-plugins/compare/cc-statusline--v2.0.0...cc-statusline--v3.0.0) (2026-11-14)
 
 

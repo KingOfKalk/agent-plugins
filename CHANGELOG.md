@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.0.2](https://github.com/KingOfKalk/agent-plugins/compare/v6.0.1...v6.0.2) (2026-11-18)
+
+
+### Documentation
+
+* document installation with GitHub Copilot CLI ([#113](https://github.com/KingOfKalk/agent-plugins/issues/113)) ([784ecc2](https://github.com/KingOfKalk/agent-plugins/commit/784ecc251ef83848c0323cfd3ddf04b559ec1b89))
+
 ## [6.0.1](https://github.com/KingOfKalk/agent-plugins/compare/v6.0.0...v6.0.1) (2026-11-14)
 
 

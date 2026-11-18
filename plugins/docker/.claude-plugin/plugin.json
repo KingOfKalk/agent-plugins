@@ -1,6 +1,6 @@
 {
   "name": "docker",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Manage Docker containers and Docker Compose services with automatic devcontainer detection and safety constraints. Includes a docker-container skill (docker CLI) and a docker-compose skill (docker compose).",
   "author": {
     "name": "KingOfKalk",

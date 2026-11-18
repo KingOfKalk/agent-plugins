@@ -83,6 +83,9 @@ jobs:
       # `claude plugin validate` needs no login or API key; keep the CLI offline otherwise.
       CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC: '1'
       DISABLE_AUTOUPDATER: '1'
+      # Pinned exactly; bump by hand (npm dist-tag `latest`). scripts/validate-copilot.sh
+      # turns off the CLI's auto-update and telemetry itself.
+      COPILOT_CLI_VERSION: 1.0.114
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -117,3 +120,22 @@ jobs:
       - name: claude plugin validate
         if: ${{ !cancelled() && steps.install.outcome == 'success' }}
         run: scripts/validate-plugins.sh
+
+      # Same layout as the Claude Code install above. The package has no install
+      # scripts (the platform binary comes as an optional dependency), so no
+      # `allowScripts`.
+      - name: Install Copilot CLI
+        id: install-copilot
+        if: ${{ !cancelled() }}
+        run: |
+          mkdir -p "$RUNNER_TEMP/copilot"
+          npm install --prefix "$RUNNER_TEMP/copilot" --no-fund --no-audit \
+            "@github/copilot@${COPILOT_CLI_VERSION}"
+          echo "$RUNNER_TEMP/copilot/node_modules/.bin" >> "$GITHUB_PATH"
+
+      # `copilot plugin …` needs no login. The script runs with an isolated HOME,
+      # installs every plugin from this checkout as a local marketplace, and checks
+      # version and skill count against plugin.json and skills/*/SKILL.md.
+      - name: copilot plugin install
+        if: ${{ !cancelled() && steps.install-copilot.outcome == 'success' }}
+        run: scripts/validate-copilot.sh
